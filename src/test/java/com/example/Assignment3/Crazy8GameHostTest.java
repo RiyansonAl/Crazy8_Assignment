@@ -19,7 +19,8 @@ class Crazy8GameHostTest {
 
         Crazy8GameHost host = new Crazy8GameHost(players);
         String rigged = "8H";
+        Card riggedCard = new Card(Card.Rank.EIGHT, Card.Suit.H);
         //host.drawcard(rigged);
-        assertEquals(rigged,host.drawcard(rigged));
+        assertEquals(rigged,host.drawcard(riggedCard));
     }
 }

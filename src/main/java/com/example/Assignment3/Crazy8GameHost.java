@@ -9,6 +9,6 @@ public class Crazy8GameHost {
     }
 
     protected String drawcard (){
-        return null
+        return null;
     }
 }
