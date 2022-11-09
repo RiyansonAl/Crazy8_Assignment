@@ -64,6 +64,20 @@ public class seleniumTest {
         browser.close();
     }
 
+    @Test
+    @DisplayName("Press the Host button on main page and start websocket")
+    public void press_host_button() {
+        WebDriver browser;
+
+        System.setProperty(webDriverType, webDriverLocation);
+        browser = new ChromeDriver();
+        browser.get("http://localhost:8080");
+        WebElement button = browser.findElement(By.id("hostButton"));
+        assertTrue((button.isDisplayed()));
+        button.click();
+        browser.close();
+    }
+
 
 
 
