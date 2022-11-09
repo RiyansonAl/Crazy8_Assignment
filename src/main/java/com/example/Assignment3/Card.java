@@ -54,7 +54,7 @@ public class Card {
             case TEN -> rankString = "10";
             case J -> rankString = "J";
             case Q -> rankString = "Q";
-            case K -> rankString = "k";
+            case K -> rankString = "K";
             default -> rankString = "" + cardRank + "";
 
 

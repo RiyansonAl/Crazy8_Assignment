@@ -38,9 +38,7 @@ public class CardDeck {
             return riggedCard;
         }
 
-
     }
-
 
 
 
