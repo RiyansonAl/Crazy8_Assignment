@@ -7,4 +7,8 @@ public class Crazy8GameHost {
     public Crazy8GameHost(Crazy8Player[] newplayers){
         players = newplayers;
     }
+
+    protected String drawcard (){
+        return null
+    }
 }
