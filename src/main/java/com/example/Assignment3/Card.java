@@ -36,4 +36,30 @@ public class Card {
     }
 
     //TODO TOString for returning "8H"
+
+
+    @Override
+    public String toString() {
+        String rankString = "";
+        switch (cardRank){
+            case A -> rankString = "A";
+            case TWO -> rankString = "2";
+            case THREE -> rankString = "3";
+            case FOUR -> rankString = "4";
+            case FIVE -> rankString = "5";
+            case SIX -> rankString = "6";
+            case SEVEN -> rankString = "7";
+            case EIGHT -> rankString = "8";
+            case NINE -> rankString = "9";
+            case TEN -> rankString = "10";
+            case J -> rankString = "J";
+            case Q -> rankString = "Q";
+            case K -> rankString = "k";
+            default -> rankString = "" + cardRank + "";
+
+
+
+        }
+        return "" + rankString + cardSuit + "";
+    }
 }

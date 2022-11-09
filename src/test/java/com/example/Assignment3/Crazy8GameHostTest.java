@@ -20,7 +20,11 @@ class Crazy8GameHostTest {
         Crazy8GameHost host = new Crazy8GameHost(players);
         String rigged = "8H";
         Card riggedCard = new Card(Card.Rank.EIGHT, Card.Suit.H);
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
         //host.drawcard(rigged);
-        assertEquals(rigged,host.drawcard(riggedCard));
+        System.out.println(host.drawCard(nullCard));
+        System.out.println(host.drawCard(riggedCard));
+        System.out.println(host.drawCard(nullCard));
+        assertEquals(riggedCard,host.drawCard(riggedCard));
     }
 }
