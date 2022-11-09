@@ -53,7 +53,7 @@ public class seleniumTest {
 
     @Test
     @DisplayName("Game Host Main Page- Join Game")
-    public void gamehost_main_page() {
+    public void gamehost_main_page_join() {
         WebDriver browser;
 
         System.setProperty(webDriverType, webDriverLocation);

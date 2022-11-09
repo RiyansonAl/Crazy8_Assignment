@@ -19,4 +19,14 @@ public class Assignment3Application {
 		return String.format("Hello %s!", name);
 	}
 
+	@GetMapping("/host")
+	public String player1Host() {
+		return String.format("Welcome Player 1! Waiting for other players to join");
+	}
+
+	@GetMapping("/player")
+	public String joiningPlayers() {
+		return String.format("Welcome Player!");
+	}
+
 }
