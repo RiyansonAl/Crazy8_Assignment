@@ -4,6 +4,7 @@ public class Crazy8GameHost {
     private Crazy8Player[] players;
     protected int winningScore = 100;
     CardDeck deck;
+    Card discardPile;
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
 
@@ -40,7 +41,32 @@ public class Crazy8GameHost {
         handInString = handInString + playerHand[playerHand.length-1].toString();
 
         return handInString;
+    }
 
+    protected void setDiscardPile(Card topCard){
+        discardPile = topCard;
+    }
+    protected Card getDiscardPile(){
+        return discardPile;
+    }
+
+    protected int playCard(Crazy8Player player, Card playedCard){
+
+        //Check if it matches suit or Rank
+        boolean canPlay = false;
+        if((playedCard.cardSuit == discardPile.cardSuit) || (playedCard.cardRank == discardPile.cardRank)){
+            canPlay = true;
+        }
+
+        //TODO: Add the special cards 8, Queen, ACE and TWO
+
+        if(canPlay){
+            setDiscardPile(playedCard);
+            player.removeCard(playedCard);
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

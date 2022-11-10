@@ -28,6 +28,10 @@ public class CardDeck {
                     randnum = 0;
                 }
             }
+            if(cardsDrawn >= 52){
+                Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+                return nullCard;
+            }
             Card drawnCard =  new Card(cards[randnum].cardRank, cards[randnum].cardSuit);
             cardsDrawn++;
             cards[randnum].cardRank = Card.Rank.NONE;
