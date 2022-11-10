@@ -9,6 +9,7 @@ public class Crazy8GameHost {
     protected Crazy8Player currentPlayer;
     protected boolean fwdTurnOrder;
     protected boolean skipNextTurn;
+    protected boolean play2Cards;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -18,8 +19,14 @@ public class Crazy8GameHost {
         currentPlayer = newplayers[0];
         fwdTurnOrder = true;
         skipNextTurn = false;
+        play2Cards = false;
     }
 
+    protected Card playerDrawCard (Card riggedCard){
+        Card drawnCard = deck.drawCard(riggedCard);
+        currentPlayer.addCardToHand(drawnCard);
+        return drawnCard;
+    }
     protected Card drawCard (Card riggedCard){
 
         return deck.drawCard(riggedCard);
@@ -58,7 +65,7 @@ public class Crazy8GameHost {
         return discardPile;
     }
 
-    protected int playCard(Crazy8Player player, Card playedCard, Card.Suit cardSuit){
+    protected int playCard(Crazy8Player player, Card playedCard, Card.Suit cardSuit, Card[] riggedPickup2){
 
         //Check if it matches suit or Rank
         boolean canPlay = false;
@@ -81,6 +88,20 @@ public class Crazy8GameHost {
                 fwdTurnOrder = true;
             }
 
+        } else if ((playedCard.cardRank == Card.Rank.TWO) && (canPlay)) {
+            Crazy8Player currentPlayerPlaying = currentPlayer;
+
+            Crazy8Player nextPlayer = getNextPlayer();
+
+            if(play2CardsImmediately(nextPlayer.getPlayerHand(), playedCard)){
+                play2Cards = true;
+            } else {
+                //Draw 2 cards and give to next player
+                playerDrawCard(riggedPickup2[0]);
+                playerDrawCard(riggedPickup2[1]);
+            }
+            currentPlayer = currentPlayerPlaying;
+            
         }
 
         if(canPlay){
@@ -90,6 +111,40 @@ public class Crazy8GameHost {
         } else {
             return 0;
         }
+    }
+
+    protected boolean play2CardsImmediately(Card[] playerHand, Card topCard){
+        //TODO: Take into account the special cards like 8, ACE, Queen and TWO
+        //Checking to see if 2 cards can be played immediately from players hand
+        Card[] potentialFirstCards = new  Card[playerHand.length];
+        int count = 0;
+        //Add the first potential playable card to array
+        for(int i =0; i < playerHand.length; i++){
+            if((playerHand[i].cardSuit == topCard.cardSuit) || (playerHand[i].cardRank == topCard.cardRank)){
+                //Can play this card
+                potentialFirstCards[count]= playerHand[i];
+                count++;
+            }
+        }
+        //No card can be played so the player has to pick up 2 cards
+        if(count == 0){
+            return false;
+        }
+
+        //Check to see if there is a second card that can be played
+        for(int j = 0; j < count; j++){
+            for(int i = 0; i < playerHand.length; i++) {
+                if ((playerHand[i].cardSuit == potentialFirstCards[j].cardSuit) && (playerHand[i].cardRank == potentialFirstCards[j].cardRank)) {
+                    //Skip the case of the same card in hand being played twice
+
+                } else if ((playerHand[i].cardSuit == potentialFirstCards[j].cardSuit) || (playerHand[i].cardRank == potentialFirstCards[j].cardRank)) {
+                    //Can play a second card
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     protected Crazy8Player getNextPlayer(){

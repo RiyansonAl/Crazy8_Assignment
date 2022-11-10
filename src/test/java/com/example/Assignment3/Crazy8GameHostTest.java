@@ -77,8 +77,11 @@ class Crazy8GameHostTest {
 
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard3, Card.Suit.NONE);
+        host.playCard(player1, riggedCard3, Card.Suit.NONE, nullCardsPickUp);
 
         assertEquals(player1HandString,host.printHand(player1));
     }
@@ -107,8 +110,11 @@ class Crazy8GameHostTest {
 
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard1, Card.Suit.D);
+        host.playCard(player1, riggedCard1, Card.Suit.D, nullCardsPickUp);
         //System.out.println(host.getDiscardPile().toString());
 
         assertEquals(player1HandString,host.printHand(player1));
@@ -150,10 +156,13 @@ class Crazy8GameHostTest {
 
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard3, Card.Suit.NONE);
+        host.playCard(player1, riggedCard3, Card.Suit.NONE, nullCardsPickUp);
         Crazy8Player nextPlayer = host.getNextPlayer();
-        host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE);
+        host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE, nullCardsPickUp);
         /*
         //Testing the turn order
         host.fwdTurnOrder = true;
@@ -208,6 +217,9 @@ class Crazy8GameHostTest {
         Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
         Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
         Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
         Card[] player3Hand = host.drawHand(player3, riggedHand2);
         String player3HandString = "9D,7D,2C,JD";
@@ -215,9 +227,9 @@ class Crazy8GameHostTest {
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.S);
 
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard5, Card.Suit.NONE);
+        host.playCard(player1, riggedCard5, Card.Suit.NONE, nullCardsPickUp);
         Crazy8Player nextPlayer = host.getNextPlayer();
-        host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE);
+        host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE, nullCardsPickUp);
 
         assertEquals(player1HandString,host.printHand(player1));
         assertEquals(player3HandString,host.printHand(player3));
@@ -252,6 +264,9 @@ class Crazy8GameHostTest {
         Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
         Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
         Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
         Card[] player4Hand = host.drawHand(player4, riggedHand2);
         String player4HandString = "9D,7D,2C,JD";
@@ -259,9 +274,9 @@ class Crazy8GameHostTest {
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.S);
 
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard5, Card.Suit.NONE);
+        host.playCard(player1, riggedCard5, Card.Suit.NONE, nullCardsPickUp);
         Crazy8Player nextPlayer = host.getNextPlayer();
-        host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE);
+        host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE, nullCardsPickUp);
 
         assertEquals(player1HandString,host.printHand(player1));
         assertEquals(player4HandString,host.printHand(player4));
@@ -301,7 +316,7 @@ class Crazy8GameHostTest {
         Card riggedCard12 = new Card(Card.Rank.J, Card.Suit.S);
         Card[] riggedCardsPickUp = {riggedCard11, riggedCard12};
         Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
-        Card[] nullCardsPickUp = {nullCard, nullCard}
+        Card[] nullCardsPickUp = {nullCard, nullCard};
 
         Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
         Card[] player2Hand = host.drawHand(player2, riggedHand2);
@@ -348,7 +363,7 @@ class Crazy8GameHostTest {
         Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
 
         Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
-        Card[] nullCardsPickUp = {nullCard, nullCard}
+        Card[] nullCardsPickUp = {nullCard, nullCard};
 
         Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
         Card[] player2Hand = host.drawHand(player2, riggedHand2);

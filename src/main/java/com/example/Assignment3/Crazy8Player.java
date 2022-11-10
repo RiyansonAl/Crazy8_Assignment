@@ -1,5 +1,7 @@
 package com.example.Assignment3;
 
+import org.checkerframework.checker.units.qual.C;
+
 public class Crazy8Player {
 
     Card[] playerHand;
@@ -31,6 +33,15 @@ public class Crazy8Player {
                 j++;
             }
         }
+        playerHand = newHand;
+    }
+
+    public void addCardToHand(Card add){
+        Card[] newHand = new Card[playerHand.length + 1];
+        for(int i = 0; i < playerHand.length; i++){
+            newHand[i] = playerHand[i];
+        }
+        newHand[playerHand.length] = add;
         playerHand = newHand;
     }
 
