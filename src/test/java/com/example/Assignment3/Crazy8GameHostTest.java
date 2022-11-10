@@ -267,6 +267,104 @@ class Crazy8GameHostTest {
         assertEquals(player4HandString,host.printHand(player4));
     }
 
+    @Test
+    @DisplayName("Player 1 plays a 2 and then the next player picks up 2 cards if they cant play 2 cards immediately")
+    void playcarddraw2() {
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
+
+        Crazy8Player[] players = {player1, player2, player3, player4};
+
+        Crazy8GameHost host = new Crazy8GameHost(players);
+        //Five cards to draw - player 1
+        Card riggedCard1 = new Card(Card.Rank.EIGHT, Card.Suit.H);
+        Card riggedCard2 = new Card(Card.Rank.TEN, Card.Suit.C);
+        Card riggedCard3 = new Card(Card.Rank.TWO, Card.Suit.H);
+        Card riggedCard4 = new Card(Card.Rank.K, Card.Suit.D);
+        Card riggedCard5 = new Card(Card.Rank.Q, Card.Suit.S);
+
+        Card[] riggedHand = {riggedCard1, riggedCard2, riggedCard3, riggedCard4, riggedCard5};
+        Card[] player1Hand = host.drawHand(player1, riggedHand);
+        String player1HandString = "8H,10C,KD,QS";
+
+        //Five cards to draw - player 2
+        Card riggedCard6 = new Card(Card.Rank.NINE, Card.Suit.D);
+        Card riggedCard7 = new Card(Card.Rank.SEVEN, Card.Suit.D);
+        Card riggedCard8 = new Card(Card.Rank.THREE, Card.Suit.C);
+        Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
+        Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
+
+        //Two cards that was drawn by next player
+        Card riggedCard11 = new Card(Card.Rank.K, Card.Suit.H);
+        Card riggedCard12 = new Card(Card.Rank.J, Card.Suit.S);
+        Card[] riggedCardsPickUp = {riggedCard11, riggedCard12};
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard}
+
+        Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
+        Card[] player2Hand = host.drawHand(player2, riggedHand2);
+        String player2HandString = "9D,7D,3C,JD,KS,KH,JS";
+
+        Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
+
+        host.setDiscardPile(discardPileTop);
+        host.playCard(player1, riggedCard3, Card.Suit.NONE, riggedCardsPickUp);
+        Crazy8Player nextPlayer = host.getNextPlayer();
+        host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE, nullCardsPickUp);
+
+        assertEquals(player1HandString,host.printHand(player1));
+        assertEquals(player2HandString,host.printHand(player2));
+    }
+
+    @Test
+    @DisplayName("Player 1 plays a 2 and then the next player immediately plays 2 cards immediately")
+    void playcardplay2() {
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
+
+        Crazy8Player[] players = {player1, player2, player3, player4};
+
+        Crazy8GameHost host = new Crazy8GameHost(players);
+        //Five cards to draw - player 1
+        Card riggedCard1 = new Card(Card.Rank.EIGHT, Card.Suit.H);
+        Card riggedCard2 = new Card(Card.Rank.TEN, Card.Suit.C);
+        Card riggedCard3 = new Card(Card.Rank.TWO, Card.Suit.H);
+        Card riggedCard4 = new Card(Card.Rank.K, Card.Suit.D);
+        Card riggedCard5 = new Card(Card.Rank.Q, Card.Suit.S);
+
+        Card[] riggedHand = {riggedCard1, riggedCard2, riggedCard3, riggedCard4, riggedCard5};
+        Card[] player1Hand = host.drawHand(player1, riggedHand);
+        String player1HandString = "8H,10C,KD,QS";
+
+        //Five cards to draw - player 2
+        Card riggedCard6 = new Card(Card.Rank.NINE, Card.Suit.H);
+        Card riggedCard7 = new Card(Card.Rank.SEVEN, Card.Suit.D);
+        Card riggedCard8 = new Card(Card.Rank.THREE, Card.Suit.H);
+        Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
+        Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
+
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard}
+
+        Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
+        Card[] player2Hand = host.drawHand(player2, riggedHand2);
+        String player2HandString = "7D,JD,KS";
+
+        Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
+
+        host.setDiscardPile(discardPileTop);
+        host.playCard(player1, riggedCard3, Card.Suit.NONE, nullCardsPickUp);
+        Crazy8Player nextPlayer = host.getNextPlayer();
+        host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE, nullCardsPickUp);
+
+        assertEquals(player1HandString,host.printHand(player1));
+        assertEquals(player2HandString,host.printHand(player2));
+    }
+
 
 
 
