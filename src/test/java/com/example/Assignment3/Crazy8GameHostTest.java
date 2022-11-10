@@ -220,7 +220,7 @@ class Crazy8GameHostTest {
         host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE);
 
         assertEquals(player1HandString,host.printHand(player1));
-        assertEquals(player3HandString,host.printHand(player2));
+        assertEquals(player3HandString,host.printHand(player3));
     }
 
     @Test
@@ -264,7 +264,7 @@ class Crazy8GameHostTest {
         host.playCard(nextPlayer, riggedCard10, Card.Suit.NONE);
 
         assertEquals(player1HandString,host.printHand(player1));
-        assertEquals(player4HandString,host.printHand(player2));
+        assertEquals(player4HandString,host.printHand(player4));
     }
 
 

@@ -72,6 +72,15 @@ public class Crazy8GameHost {
             setDiscardPile(suitCard);
             player.removeCard(playedCard);
             return 1;
+        } else if ((playedCard.cardRank == Card.Rank.Q) && (canPlay)) {
+            skipNextTurn = true;
+        } else if ((playedCard.cardRank == Card.Rank.A) && (canPlay)) {
+            if(fwdTurnOrder){
+                fwdTurnOrder = false;
+            } else {
+                fwdTurnOrder = true;
+            }
+
         }
 
         if(canPlay){
