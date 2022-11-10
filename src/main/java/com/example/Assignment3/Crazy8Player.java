@@ -5,8 +5,10 @@ public class Crazy8Player {
     Card[] playerHand;
 
     int score;
+     private int playerNum;
 
-    public Crazy8Player(){
+    public Crazy8Player(int playerNumber){
+        playerNum = playerNumber;
         score = 0;
     }
 
@@ -30,6 +32,10 @@ public class Crazy8Player {
             }
         }
         playerHand = newHand;
+    }
+
+    public int getPlayerNum(){
+        return playerNum;
     }
 
 

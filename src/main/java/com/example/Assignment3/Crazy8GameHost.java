@@ -2,14 +2,22 @@ package com.example.Assignment3;
 
 public class Crazy8GameHost {
     private Crazy8Player[] players;
-    protected int winningScore = 100;
+    protected int roundEndingScore = 100;
     CardDeck deck;
     Card discardPile;
+
+    protected Crazy8Player currentPlayer;
+    protected boolean fwdTurnOrder;
+    protected boolean skipNextTurn;
+
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
 
         players = newplayers;
         deck = new CardDeck();
+        currentPlayer = newplayers[0];
+        fwdTurnOrder = true;
+        skipNextTurn = false;
     }
 
     protected Card drawCard (Card riggedCard){
@@ -72,6 +80,55 @@ public class Crazy8GameHost {
             return 1;
         } else {
             return 0;
+        }
+    }
+
+    protected Crazy8Player getNextPlayer(){
+        int currentPlayerNum = currentPlayer.getPlayerNum();
+        int numOfPlayers = players.length;
+
+        int nextPlayerNum = 0;
+        if(fwdTurnOrder == true){
+            //Skip next players turn
+            if(skipNextTurn){
+                //Adding 1 here since currentPlayerNum is already one greater than array position
+                nextPlayerNum = currentPlayerNum + 1;
+                if(nextPlayerNum == numOfPlayers){
+                    nextPlayerNum = 0;
+                } else if (nextPlayerNum > nextPlayerNum){
+                    nextPlayerNum = 1;
+                }
+                skipNextTurn = false;
+            } else {
+                //not adding anything here since currentPlayerNum is already one greater than array position
+                nextPlayerNum = currentPlayerNum;
+                if (nextPlayerNum >= numOfPlayers) {
+                    nextPlayerNum = 0;
+                }
+            }
+            currentPlayer = players[nextPlayerNum];
+            return players[nextPlayerNum];
+
+        } else{
+            //Reverse order
+            if(skipNextTurn){
+                nextPlayerNum = currentPlayerNum - 3;
+                if(nextPlayerNum == -1){
+                    nextPlayerNum = numOfPlayers -1;
+                } else if(nextPlayerNum == -2){
+                    nextPlayerNum = numOfPlayers -2;
+                }
+                skipNextTurn = false;
+            } else {
+                //Not skipping a turn
+                //-2 since currentPlayerNum is one number ahead
+                nextPlayerNum = currentPlayerNum - 2;
+                if(nextPlayerNum < 0){
+                    nextPlayerNum = numOfPlayers-1;
+                }
+            }
+            currentPlayer = players[nextPlayerNum];
+            return players[nextPlayerNum];
         }
     }
 

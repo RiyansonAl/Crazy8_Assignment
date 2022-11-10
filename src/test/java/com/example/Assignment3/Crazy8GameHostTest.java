@@ -10,10 +10,10 @@ class Crazy8GameHostTest {
     @Test
     @DisplayName("Draw a card")
     void drawcard() {
-        Crazy8Player player1 = new Crazy8Player();
-        Crazy8Player player2 = new Crazy8Player();
-        Crazy8Player player3 = new Crazy8Player();
-        Crazy8Player player4 = new Crazy8Player();
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
 
         Crazy8Player[] players = {player1, player2, player3, player4};
 
@@ -31,10 +31,10 @@ class Crazy8GameHostTest {
     @Test
     @DisplayName("Draw a full hand of cards for each player")
     void drawFullHand() {
-        Crazy8Player player1 = new Crazy8Player();
-        Crazy8Player player2 = new Crazy8Player();
-        Crazy8Player player3 = new Crazy8Player();
-        Crazy8Player player4 = new Crazy8Player();
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
 
         Crazy8Player[] players = {player1, player2, player3, player4};
 
@@ -56,10 +56,10 @@ class Crazy8GameHostTest {
     @Test
     @DisplayName("Player 1 plays a card")
     void playcardnormal() {
-        Crazy8Player player1 = new Crazy8Player();
-        Crazy8Player player2 = new Crazy8Player();
-        Crazy8Player player3 = new Crazy8Player();
-        Crazy8Player player4 = new Crazy8Player();
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
 
         Crazy8Player[] players = {player1, player2, player3, player4};
 
@@ -86,10 +86,10 @@ class Crazy8GameHostTest {
     @Test
     @DisplayName("Player 1 plays an 8 and changes the suit to D")
     void playcard8() {
-        Crazy8Player player1 = new Crazy8Player();
-        Crazy8Player player2 = new Crazy8Player();
-        Crazy8Player player3 = new Crazy8Player();
-        Crazy8Player player4 = new Crazy8Player();
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
 
         Crazy8Player[] players = {player1, player2, player3, player4};
 
@@ -117,11 +117,11 @@ class Crazy8GameHostTest {
 
     @Test
     @DisplayName("Player 1 plays a card and then the next player plays a card")
-    void playcardnormal() {
-        Crazy8Player player1 = new Crazy8Player();
-        Crazy8Player player2 = new Crazy8Player();
-        Crazy8Player player3 = new Crazy8Player();
-        Crazy8Player player4 = new Crazy8Player();
+    void playcardnormalTurns() {
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
 
         Crazy8Player[] players = {player1, player2, player3, player4};
 
@@ -144,8 +144,8 @@ class Crazy8GameHostTest {
         Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
         Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
 
-        Card[] riggedHan2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
-        Card[] player2Hand = host.drawHand(player1, riggedHan2);
+        Card[] riggedHand2 = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
+        Card[] player2Hand = host.drawHand(player2, riggedHand2);
         String player2HandString = "9D,2C,JD,KS";
 
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
@@ -154,6 +154,25 @@ class Crazy8GameHostTest {
         host.playCard(player1, riggedCard3, Card.Suit.NONE);
         Crazy8Player nextPlayer = host.getNextPlayer();
         host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE);
+        /*
+        //Testing the turn order
+        host.fwdTurnOrder = true;
+        host.skipNextTurn = true;
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        host.skipNextTurn = true;
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        nextPlayer = host.getNextPlayer();
+        System.out.println("Current Player = Player " + host.currentPlayer.getPlayerNum() + "\n");
+        */
 
         assertEquals(player1HandString,host.printHand(player1));
         assertEquals(player2HandString,host.printHand(player2));
