@@ -93,7 +93,7 @@ public class Crazy8GameHost {
 
             Crazy8Player nextPlayer = getNextPlayer();
 
-            if(play2CardsImmediately(nextPlayer.getPlayerHand(), playedCard)){
+            if(canPlay2CardsImmediately(nextPlayer.getPlayerHand(), playedCard)){
                 play2Cards = true;
             } else {
                 //Draw 2 cards and give to next player
@@ -113,7 +113,25 @@ public class Crazy8GameHost {
         }
     }
 
-    protected boolean play2CardsImmediately(Card[] playerHand, Card topCard){
+    protected int playerPlays2Cards(Crazy8Player player, Card card1, Card card2, Card.Suit cardSuit, Card[] riggedPickup2){
+        //TODO: may need to fix this method to work with special cards like 8, ACE, Queen and TWO
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+        int check = 0;
+        if(card1.cardRank == Card.Rank.EIGHT){
+            check = playCard(currentPlayer, card1, cardSuit, nullCardsPickUp);
+        } else {
+            check = playCard(currentPlayer, card1, Card.Suit.NONE, nullCardsPickUp);
+        }
+        //If the first card was planned successfully play the second card.
+        if(check == 1){
+            return playCard(currentPlayer, card2, Card.Suit.NONE, nullCardsPickUp);
+        } else {
+            return 0;
+        }
+    }
+
+    protected boolean canPlay2CardsImmediately(Card[] playerHand, Card topCard){
         //TODO: Take into account the special cards like 8, ACE, Queen and TWO
         //Checking to see if 2 cards can be played immediately from players hand
         Card[] potentialFirstCards = new  Card[playerHand.length];

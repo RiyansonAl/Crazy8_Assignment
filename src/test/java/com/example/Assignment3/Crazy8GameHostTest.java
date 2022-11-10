@@ -374,7 +374,11 @@ class Crazy8GameHostTest {
         host.setDiscardPile(discardPileTop);
         host.playCard(player1, riggedCard3, Card.Suit.NONE, nullCardsPickUp);
         Crazy8Player nextPlayer = host.getNextPlayer();
-        host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE, nullCardsPickUp);
+        if(host.play2Cards == true){
+            host.playerPlays2Cards(nextPlayer, riggedCard6, riggedCard8, Card.Suit.NONE, nullCardsPickUp);
+        } else {
+            host.playCard(nextPlayer, riggedCard7, Card.Suit.NONE, nullCardsPickUp);
+        }
 
         assertEquals(player1HandString,host.printHand(player1));
         assertEquals(player2HandString,host.printHand(player2));
