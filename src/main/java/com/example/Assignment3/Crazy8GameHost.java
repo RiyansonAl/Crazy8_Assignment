@@ -50,7 +50,7 @@ public class Crazy8GameHost {
         return discardPile;
     }
 
-    protected int playCard(Crazy8Player player, Card playedCard){
+    protected int playCard(Crazy8Player player, Card playedCard, Card.Suit cardSuit){
 
         //Check if it matches suit or Rank
         boolean canPlay = false;
@@ -59,6 +59,12 @@ public class Crazy8GameHost {
         }
 
         //TODO: Add the special cards 8, Queen, ACE and TWO
+        if(playedCard.cardRank == Card.Rank.EIGHT){
+            Card suitCard = new Card(Card.Rank.NONE, cardSuit);
+            setDiscardPile(suitCard);
+            player.removeCard(playedCard);
+            return 1;
+        }
 
         if(canPlay){
             setDiscardPile(playedCard);
