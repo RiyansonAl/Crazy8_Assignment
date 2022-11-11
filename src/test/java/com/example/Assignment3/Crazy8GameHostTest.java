@@ -424,6 +424,79 @@ class Crazy8GameHostTest {
         player4.setPlayerHand(player4Hand);
 
 
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card[] nullCardsPickUp = {nullCard, nullCard};
+
+
+        Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
+
+        host.setDiscardPile(discardPileTop);
+        host.playCard(player1, riggedCard1, Card.Suit.H, nullCardsPickUp);
+        String endString = "";
+        if(host.roundEnded) {
+            endString = host.endTurn();
+        }
+        System.out.println(endString);
+
+        System.out.println(host.printScoreBoard());
+
+        System.out.println("Player 1's Hand: " + host.printHand(player1));
+        System.out.println("Player 2's Hand: " + host.printHand(player2));
+        System.out.println("Player 3's Hand: " + host.printHand(player3));
+        System.out.println("Player 4's Hand: " + host.printHand(player4));
+
+        int player1Score = 0;
+        int player2Score = 12;
+        int player3Score = 20;
+        int player4Score = 39;
+
+        assertEquals(player1Score,player1.getScore());
+        assertEquals(player2Score,player2.getScore());
+        assertEquals(player3Score,player3.getScore());
+        assertEquals(player4Score,player4.getScore());
+
+    }
+
+    @Test
+    @DisplayName("Player 1 plays a the last card in there hand and the round ends and score gets calculated. ")
+    void playcardWinner() {
+        Crazy8Player player1 = new Crazy8Player(1);
+        Crazy8Player player2 = new Crazy8Player(2);
+        Crazy8Player player3 = new Crazy8Player(3);
+        Crazy8Player player4 = new Crazy8Player(4);
+
+        Crazy8Player[] players = {player1, player2, player3, player4};
+
+        Crazy8GameHost host = new Crazy8GameHost(players);
+        //player 1's hand
+        Card riggedCard1 = new Card(Card.Rank.EIGHT, Card.Suit.H);
+        Card[] player1Hand = {riggedCard1};
+        player1.setPlayerHand(player1Hand);
+
+        //player 2's hand
+        Card riggedCard2 = new Card(Card.Rank.TEN, Card.Suit.C);
+        Card riggedCard3 = new Card(Card.Rank.TWO, Card.Suit.H);
+        Card[] player2Hand = {riggedCard2, riggedCard3};
+        player2.setPlayerHand(player2Hand);
+        player2.addScore(50);
+
+
+        //player 3's hand
+        Card riggedCard4 = new Card(Card.Rank.K, Card.Suit.D);
+        Card riggedCard5 = new Card(Card.Rank.Q, Card.Suit.S);
+        Card[] player3Hand = {riggedCard4, riggedCard5};
+        player3.setPlayerHand(player3Hand);
+        player3.addScore(60);
+
+        //player 4's hand
+        Card riggedCard6 = new Card(Card.Rank.NINE, Card.Suit.H);
+        Card riggedCard7 = new Card(Card.Rank.SEVEN, Card.Suit.D);
+        Card riggedCard8 = new Card(Card.Rank.THREE, Card.Suit.H);
+        Card riggedCard9 = new Card(Card.Rank.J, Card.Suit.D);
+        Card riggedCard10 = new Card(Card.Rank.K, Card.Suit.S);
+        Card[] player4Hand = {riggedCard6, riggedCard7, riggedCard8, riggedCard9, riggedCard10};
+        player4.setPlayerHand(player4Hand);
+        player4.addScore(80);
 
 
         Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
@@ -451,8 +524,6 @@ class Crazy8GameHostTest {
         int player2Score = 12;
         int player3Score = 20;
         int player4Score = 39;
-
-
 
         assertEquals(player1Score,player1.getScore());
         assertEquals(player2Score,player2.getScore());

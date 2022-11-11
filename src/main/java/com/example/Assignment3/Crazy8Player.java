@@ -57,7 +57,7 @@ public class Crazy8Player {
     }
 
     public void addScore(int UpdareScore){
-        score = UpdareScore;
+        score = score + UpdareScore;
     }
 
     public int getScore(){
