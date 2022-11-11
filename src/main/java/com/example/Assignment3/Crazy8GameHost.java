@@ -2,7 +2,7 @@ package com.example.Assignment3;
 
 public class Crazy8GameHost {
     private Crazy8Player[] players;
-    protected int roundEndingScore = 100;
+    protected int gameEndingScore = 100;
     CardDeck deck;
     Card discardPile;
 
@@ -47,6 +47,15 @@ public class Crazy8GameHost {
             player.setPlayerHand(riggedHand);
             return riggedHand;
         }
+    }
+
+    protected void newRound(){
+        deck = new CardDeck();
+        currentPlayer = players[0];
+        fwdTurnOrder = true;
+        skipNextTurn = false;
+        play2Cards = false;
+        roundEnded = false;
     }
 
     protected String printHand(Crazy8Player player){
@@ -231,6 +240,25 @@ public class Crazy8GameHost {
         if(roundEnded){
             calculateScores();
             //TODO:Check for a winner
+            boolean ifWinner = false;
+            for (int i = 0; i < players.length; i++){
+                if(players[i].getScore() >= gameEndingScore){
+                    ifWinner = true;
+                }
+            }
+            if(ifWinner){
+                //Init the lowest score with the first player
+                int lowestScore = players[0].getScore();
+                Crazy8Player lowestScorePlayer = players[0];
+                //Get the player with the lowest score
+                for (int i = 0; i < players.length; i++){
+                    if(players[i].getScore() < lowestScore){
+                        lowestScore = players[i].getScore();
+                        lowestScorePlayer = players[i];
+                    }
+                }
+                endRoundString = endRoundString + "The winner is player " + lowestScorePlayer.getPlayerNum() + " with a score of " + lowestScore + "\n";
+            }
 
         } else {
             endRoundString = endRoundString + "Round has not ended";

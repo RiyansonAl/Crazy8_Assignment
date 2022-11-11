@@ -521,9 +521,9 @@ class Crazy8GameHostTest {
         System.out.println("Player 4's Hand: " + host.printHand(player4));
 
         int player1Score = 0;
-        int player2Score = 12;
-        int player3Score = 20;
-        int player4Score = 39;
+        int player2Score = 62;
+        int player3Score = 80;
+        int player4Score = 119;
 
         assertEquals(player1Score,player1.getScore());
         assertEquals(player2Score,player2.getScore());
