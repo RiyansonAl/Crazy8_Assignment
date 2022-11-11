@@ -25,14 +25,17 @@ public class Crazy8Player {
     public void removeCard(Card remove){
         Card[] newHand = new Card[playerHand.length -1];
         int j = 0;
-        for(int i = 0; i < playerHand.length; i++){
-            if((playerHand[i].cardRank == remove.cardRank) && (playerHand[i].cardSuit == remove.cardSuit)){
+        if(newHand.length != 0) {
+            for (int i = 0; i < playerHand.length; i++) {
+                if ((playerHand[i].cardRank == remove.cardRank) && (playerHand[i].cardSuit == remove.cardSuit)) {
 
-            } else{
-                newHand[j] = playerHand[i];
-                j++;
+                } else {
+                    newHand[j] = playerHand[i];
+                    j++;
+                }
             }
         }
+
         playerHand = newHand;
     }
 
@@ -47,6 +50,18 @@ public class Crazy8Player {
 
     public int getPlayerNum(){
         return playerNum;
+    }
+
+    public int getNumOfCardsInHand(){
+        return playerHand.length;
+    }
+
+    public void addScore(int UpdareScore){
+        score = UpdareScore;
+    }
+
+    public int getScore(){
+        return score;
     }
 
 

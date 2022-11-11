@@ -10,6 +10,7 @@ public class Crazy8GameHost {
     protected boolean fwdTurnOrder;
     protected boolean skipNextTurn;
     protected boolean play2Cards;
+    protected boolean roundEnded;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -20,6 +21,7 @@ public class Crazy8GameHost {
         fwdTurnOrder = true;
         skipNextTurn = false;
         play2Cards = false;
+        roundEnded = false;
     }
 
     protected Card playerDrawCard (Card riggedCard){
@@ -50,10 +52,14 @@ public class Crazy8GameHost {
     protected String printHand(Crazy8Player player){
         Card[] playerHand = player.getPlayerHand();
         String handInString = "";
-        for(int i = 0; i < playerHand.length-1; i++){
-            handInString = handInString + playerHand[i].toString() + ",";
+        if(playerHand.length != 0) {
+            for (int i = 0; i < playerHand.length - 1; i++) {
+                handInString = handInString + playerHand[i].toString() + ",";
+            }
+            handInString = handInString + playerHand[playerHand.length - 1].toString();
+        } else {
+            handInString = "No cards";
         }
-        handInString = handInString + playerHand[playerHand.length-1].toString();
 
         return handInString;
     }
@@ -78,6 +84,9 @@ public class Crazy8GameHost {
             Card suitCard = new Card(Card.Rank.NONE, cardSuit);
             setDiscardPile(suitCard);
             player.removeCard(playedCard);
+            if(player.getNumOfCardsInHand() == 0){
+                roundEnded = true;
+            }
             return 1;
         } else if ((playedCard.cardRank == Card.Rank.Q) && (canPlay)) {
             skipNextTurn = true;
@@ -107,6 +116,9 @@ public class Crazy8GameHost {
         if(canPlay){
             setDiscardPile(playedCard);
             player.removeCard(playedCard);
+            if(player.getNumOfCardsInHand() == 0){
+                roundEnded = true;
+            }
             return 1;
         } else {
             return 0;
@@ -212,6 +224,79 @@ public class Crazy8GameHost {
             currentPlayer = players[nextPlayerNum];
             return players[nextPlayerNum];
         }
+    }
+
+    protected String endTurn(){
+        String endRoundString = "";
+        if(roundEnded){
+            calculateScores();
+            //TODO:Check for a winner
+
+        } else {
+            endRoundString = endRoundString + "Round has not ended";
+        }
+        return endRoundString;
+    }
+
+    protected void calculateScores(){
+        for(int i = 0; i < players.length; i++){
+            if(players[i].getNumOfCardsInHand() != 0){
+                int scoreUpdate = 0;
+                Card[] playerHand = players[i].getPlayerHand();
+                for(int j=0; j < playerHand.length; j++){
+                    scoreUpdate = scoreUpdate + calculateScoreHelper(playerHand[j]);
+                }
+                players[i].addScore(scoreUpdate);
+            }
+        }
+
+    }
+
+    private int calculateScoreHelper(Card card){
+        int cardValue = 0;
+        switch (card.cardRank){
+            case A -> cardValue = 10;
+            case TWO -> cardValue = 2;
+            case THREE -> cardValue = 3;
+            case FOUR -> cardValue = 4;
+            case FIVE -> cardValue = 5;
+            case SIX -> cardValue = 6;
+            case SEVEN -> cardValue = 7;
+            case EIGHT -> cardValue = 8;
+            case NINE -> cardValue = 9;
+            case TEN -> cardValue = 10;
+            case J -> cardValue = 10;
+            case Q -> cardValue = 10;
+            case K -> cardValue = 10;
+        }
+        return cardValue;
+    }
+
+    protected String printScoreBoard(){
+        String scoreBoard = "";
+        switch(players.length) {
+            case 1:
+                scoreBoard = scoreBoard +"|\tPlayer 1\t|\n";
+                break;
+            case 2:
+                scoreBoard = scoreBoard +"|\tPlayer 1\t|\tPlayer 2\t|\n";
+                break;
+            case 3:
+                scoreBoard = scoreBoard +"|\tPlayer 1\t|\tPlayer 2\t|\tPlayer 3\t|\n";
+                break;
+            case 4:
+                scoreBoard = scoreBoard +"|\tPlayer 1\t|\tPlayer 2\t|\tPlayer 3\t|\tPlayer 4\t|\n";
+                break;
+        }
+        //Format and print scores
+        scoreBoard = scoreBoard + "|";
+        for(int i = 0; i < players.length; i++){
+            scoreBoard = scoreBoard + "\t" + players[i].getScore() + "\t\t\t|";
+        }
+
+        scoreBoard = scoreBoard + "\n\n";
+
+        return scoreBoard;
     }
 
 }

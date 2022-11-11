@@ -387,7 +387,7 @@ class Crazy8GameHostTest {
 
     @Test
     @DisplayName("Player 1 plays a the last card in there hand and the round ends and score gets calculated. ")
-    void playcardplay2() {
+    void playcardEndRound() {
         Crazy8Player player1 = new Crazy8Player(1);
         Crazy8Player player2 = new Crazy8Player(2);
         Crazy8Player player3 = new Crazy8Player(3);
@@ -433,10 +433,19 @@ class Crazy8GameHostTest {
         Card discardPileTop = new Card(Card.Rank.SIX, Card.Suit.H);
 
         host.setDiscardPile(discardPileTop);
-        host.playCard(player1, riggedCard3, Card.Suit.NONE, nullCardsPickUp);
-        String endString = host.endTurn();
+        host.playCard(player1, riggedCard1, Card.Suit.H, nullCardsPickUp);
+        String endString = "";
+        if(host.roundEnded) {
+            endString = host.endTurn();
+        }
         System.out.println(endString);
+
         System.out.println(host.printScoreBoard());
+
+        System.out.println("Player 1's Hand: " + host.printHand(player1));
+        System.out.println("Player 2's Hand: " + host.printHand(player2));
+        System.out.println("Player 3's Hand: " + host.printHand(player3));
+        System.out.println("Player 4's Hand: " + host.printHand(player4));
 
         int player1Score = 0;
         int player2Score = 12;
@@ -444,10 +453,12 @@ class Crazy8GameHostTest {
         int player4Score = 39;
 
 
+
         assertEquals(player1Score,player1.getScore());
         assertEquals(player2Score,player2.getScore());
         assertEquals(player3Score,player3.getScore());
         assertEquals(player4Score,player4.getScore());
+
     }
 
 
