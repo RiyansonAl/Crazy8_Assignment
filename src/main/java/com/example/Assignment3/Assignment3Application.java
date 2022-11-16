@@ -2,16 +2,24 @@ package com.example.Assignment3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+
 
 @SpringBootApplication
-@RestController
+//@RestController
+@Controller
 public class Assignment3Application {
 
 	public static void main(String[] args) {
@@ -23,8 +31,17 @@ public class Assignment3Application {
 		return String.format("Hello %s!", name);
 	}
 
-	@GetMapping("/host")
-	public String player1Host() {
+	@RequestMapping("/host")
+	public String player1Host(Model model) {
+
+		//model.addAttribute("serverTime", dateFormat.format(new Date()));
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = myDateObj.format(myFormatObj);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		/*
 		try {
 			ServerSocket server = new ServerSocket(12345);
 			System.out.println("Created server Socket");
@@ -34,7 +51,10 @@ public class Assignment3Application {
 			throw new RuntimeException(e);
 		}
 
-		return String.format("Welcome Player 1! Waiting for other players to join");
+		 */
+
+		//return String.format("Welcome Player 1! Waiting for other players to join");
+		return "hostPage.html";
 	}
 
 	@GetMapping("/player")
