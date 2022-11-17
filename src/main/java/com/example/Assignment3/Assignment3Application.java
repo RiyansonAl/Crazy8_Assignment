@@ -4,10 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -21,6 +18,7 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 //@RestController
 @Controller
 public class Assignment3Application {
+	Player1Host webHost;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Assignment3Application.class, args);
@@ -32,7 +30,12 @@ public class Assignment3Application {
 	}
 
 	@RequestMapping("/host")
-	public String player1Host(Model model) {
+	public String player1Host(Model model, @ModelAttribute("numOfPlayers") int numPlayer) {
+		//Init the webhost
+		//int numPlayer = 3;
+		webHost = new Player1Host(numPlayer);
+		//Object for player 1 with that players hands is displayed on screen
+		//Maybe Object for hands in the discard pile and displaying dicard pile on screen
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
 		LocalDateTime myDateObj = LocalDateTime.now();
@@ -40,6 +43,14 @@ public class Assignment3Application {
 		String formattedDate = myDateObj.format(myFormatObj);
 
 		model.addAttribute("serverTime", formattedDate);
+
+		model.addAttribute("numPlayers", webHost.getNumOfPlayers());
+
+		model.addAttribute("msgId", "Id");
+		model.addAttribute("msgName", "Name");
+
+		model.addAttribute("id", "Id here");
+		model.addAttribute("name", "Name Here");
 
 		/*
 		try {

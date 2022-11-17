@@ -7,6 +7,24 @@
 <body>
 <h1>Test Page for Card Game</h1>
 Current time is <span th:text="${serverTime}" />
+<br>
+Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
+<br>
+<form action="#" th:action="@{/saveHost}" method="post">
+    <table border="1">
+        <tr>
+            <td><label th:text="#{msgId}" /></td>
+            <td><input type="number" th:field="*{id}" /></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{msgName}" /></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
 
 </body>
 </html>

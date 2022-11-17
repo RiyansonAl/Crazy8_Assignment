@@ -18,10 +18,16 @@
 <h1>Crazy 8 Card Game</h1>
 <br>
 <h3>Play game</h3>
-<form action="/host" method="GET" id="hostGameButton">
-  <div>
-    <button onclick="Host page.html" id="hostButton">Host Game</button>
-  </div>
+<form action="/host" method="POST" id="hostGameButton">
+  <p>Please select number of players:</p>
+  <input type="radio" id="2players" name="numOfPlayers" value="2">
+  <label for="2players">2</label><br>
+  <input type="radio" id="3players" name="numOfPlayers" value="3">
+  <label for="3players">3</label><br>
+  <input type="radio" id="4players" name="numOfPlayers" value="4" checked>
+  <label for="4players">4</label><br><br>
+  <input type="submit" value="Host Game" id="hostButton>
+
 </form>
 <form action="/player" method="GET" id="joinGameButton">
   <div>
