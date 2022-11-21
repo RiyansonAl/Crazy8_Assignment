@@ -68,6 +68,22 @@ public class Assignment3Application {
 		return "hostPage.html";
 	}
 
+	@RequestMapping("/waitingPlayers")
+	public String player1HostWaitingPlayers(Model model) {
+
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = myDateObj.format(myFormatObj);
+
+		model.addAttribute("serverTime", formattedDate);
+		
+		webHost.setNumOfPlayers(webHost.getNumOfPlayers() -1);
+		model.addAttribute("numPlayers", webHost.getNumOfPlayers());
+
+		return "hostWaitingPlayersPage.html";
+
+	}
+
 	@GetMapping("/player")
 	public String joiningPlayers() {
 		try {

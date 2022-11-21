@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" th:src="@{/gameJavascript.js}" ></script>
 </head>
 <body>
 <h1>Test Page for Card Game</h1>
 Current time is <span th:text="${serverTime}" />
 <br>
 Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
-<br>
-<form action="#" th:action="@{/saveHost}" method="post">
-    <table border="1">
-        <tr>
-            <td><label th:text="#{msgId}" /></td>
-            <td><input type="number" th:field="*{id}" /></td>
-        </tr>
-        <tr>
-            <td><label th:text="#{msgName}" /></td>
-            <td><input type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
+<br><br><br>
+<form action="/waitingPlayers" method="post">
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <input type="submit" value="Start Game">
 </form>
+
+<p id="demo2"></p>
+
+<script>
+document.getElementById("demo2").innerHTML = "Hello JavaScript!!";
+</script>
+
+<button type="button"
+        onclick="document.getElementById('demo').innerHTML = Date()">
+    Click me to display Date and Time.</button>
+
+<p id="demo"></p>
+
+
+<button type="button" onclick="myFunction()">Try it</button>
+<p id="demo3"></p>
 
 </body>
 </html>

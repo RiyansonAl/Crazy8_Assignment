@@ -12,4 +12,8 @@ public class Player1Host {
     public int getNumOfPlayers(){
         return numOfPlayers;
     }
+
+    public void setNumOfPlayers(int num){
+        numOfPlayers = num;
+    }
 }
