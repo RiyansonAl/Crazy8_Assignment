@@ -41,6 +41,7 @@ function playerCardFunction() {
     } else {
         document.getElementById("playerCardWarning").innerHTML = "No Card was selected";
         document.getElementById('playerCardField').value = "";
+        window.location.reload(true);
 
     }
 

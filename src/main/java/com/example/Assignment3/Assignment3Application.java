@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 @Controller
 public class Assignment3Application {
 	Player1Host webHost;
+	int count = 0;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Assignment3Application.class, args);
@@ -45,6 +46,9 @@ public class Assignment3Application {
 		model.addAttribute("serverTime", formattedDate);
 
 		model.addAttribute("numPlayers", webHost.getNumOfPlayers());
+		count = count + 1;
+		model.addAttribute("count", count);
+
 
 		model.addAttribute("msgId", "Id");
 		model.addAttribute("msgName", "Name");

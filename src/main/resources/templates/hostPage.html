@@ -10,6 +10,8 @@
 Current time is <span th:text="${serverTime}" />
 <br>
 Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
+<br>
+Number of times this page has been refreshed: <span th:text="${count}" />
 <br><br><br>
 <form action="/waitingPlayers" method="post">
     <label for="fname">First name:</label>
@@ -21,6 +23,12 @@ Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
 
 <script>
 document.getElementById("demo2").innerHTML = "Hello JavaScript!!";
+</script>
+
+<script>
+            window.setTimeout(function(){
+                window.location.reload();
+            },10000);
 </script>
 
 <p id="demo"></p>
