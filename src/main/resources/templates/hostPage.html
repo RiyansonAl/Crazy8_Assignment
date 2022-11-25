@@ -23,15 +23,29 @@ Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
 document.getElementById("demo2").innerHTML = "Hello JavaScript!!";
 </script>
 
-<button type="button"
-        onclick="document.getElementById('demo').innerHTML = Date()">
-    Click me to display Date and Time.</button>
-
 <p id="demo"></p>
-
+<button type="button"
+        onclick="displayDate()">
+    Click me to display Date and Time.</button>
 
 <button type="button" onclick="myFunction()">Try it</button>
 <p id="demo3"></p>
+
+
+<div id="testTestFile">
+    <p>Let AJAX change this text.</p>
+    <button type="button" onclick="testingData()">Change Content</button>
+</div>
+
+
+<form id="playerCardForm">
+    <div>
+        <label for="playerCardField">Enter the card you want to play?</label>
+        <input name="playerCard" id="playerCardField">
+        <button type="button" onclick="playerCardFunction()">Place Card</button>
+        <p id="playerCardWarning"></p>
+    </div>
+</form>
 
 </body>
 </html>
