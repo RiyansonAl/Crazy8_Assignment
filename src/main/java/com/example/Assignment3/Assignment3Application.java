@@ -89,8 +89,9 @@ public class Assignment3Application {
 
 	}
 
-	@GetMapping("/player")
-	public String joiningPlayers() {
+	@RequestMapping("/player")
+	public String joiningPlayers(Model model) {
+		/*
 		try {
 			Socket client = new Socket("localhost", 12345);
 			System.out.println("Created Client Socket");
@@ -99,7 +100,13 @@ public class Assignment3Application {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		return String.format("Welcome Player!");
+		 */
+
+		model.addAttribute("playerNumberTitle", 2);
+		model.addAttribute("playerNumberBody", 2);
+
+
+		return "playerPage.html";
 	}
 
 
