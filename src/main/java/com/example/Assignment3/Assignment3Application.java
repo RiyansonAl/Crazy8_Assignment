@@ -30,6 +30,7 @@ public class Assignment3Application {
 		return String.format("Hello %s!", name);
 	}
 
+	@CrossOrigin
 	@RequestMapping("/host")
 	public String player1Host(Model model, @ModelAttribute("numOfPlayers") int numPlayer) {
 		//Init the webhost
