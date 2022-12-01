@@ -8,6 +8,9 @@ package com.example.Assignment3;
         import org.openqa.selenium.WebDriver;
         import org.openqa.selenium.WebElement;
         import org.openqa.selenium.chrome.ChromeDriver;
+
+        import java.util.concurrent.TimeUnit;
+
         import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class seleniumTest {
@@ -96,6 +99,7 @@ public class seleniumTest {
         //button.click();
         hostBrowser.findElement(By.id("nameField")).sendKeys("Hello Riyanson");
         hostBrowser.findElement(By.id("hostButton")).sendKeys(Keys.ENTER);
+        hostBrowser.findElement(By.id("startGameButton")).sendKeys(Keys.ENTER);
 
         //WebElement e = hostBrowser.findElement(By.xpath("//*[text()='Find this text']"));
         WebElement e = hostBrowser.findElement(By.xpath("//*[text() != '']"));
@@ -110,6 +114,7 @@ public class seleniumTest {
         player2Browser = new ChromeDriver();
         player2Browser.get("http://localhost:8080");
         player2Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player2Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
         WebElement player2Text = player2Browser.findElement(By.xpath("//*[text() != '']"));
         String player2Message = "Welcome Player 2";
         assertTrue((player2Text.getText().contains(player2Message)));
@@ -118,6 +123,7 @@ public class seleniumTest {
         player3Browser = new ChromeDriver();
         player3Browser.get("http://localhost:8080");
         player3Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player3Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
         WebElement player3Text = player3Browser.findElement(By.xpath("//*[text() != '']"));
         String player3Message = "Welcome Player 3";
         assertTrue((player3Text.getText().contains(player3Message)));
@@ -126,15 +132,24 @@ public class seleniumTest {
         player4Browser = new ChromeDriver();
         player4Browser.get("http://localhost:8080");
         player4Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player4Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
         WebElement player4Text = player4Browser.findElement(By.xpath("//*[text() != '']"));
         String player4Message = "Welcome Player 4";
         assertTrue((player4Text.getText().contains(player4Message)));
 
+        //Sleep for 3 seconds
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
 
-        hostBrowser.close();
+
         player2Browser.close();
         player3Browser.close();
         player4Browser.close();
+        hostBrowser.close();
+
 
     }
 
