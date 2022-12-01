@@ -128,5 +128,14 @@ public class Assignment3Application {
 		return "playerPage.html";
 	}
 
+	@RequestMapping("/riggingPage")
+	public String player1HostWaitingPlayers(Model model) {
+
+
+
+		return "riggingPage.html";
+
+	}
+
 
 }
