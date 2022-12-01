@@ -8,6 +8,12 @@ import java.util.Map;
 @RestController
 public class HostController {
 
+    gameHostBackEnd webHost;
+
+    public HostController(gameHostBackEnd backEndHost){
+        webHost = backEndHost;
+    }
+
     @CrossOrigin
     @RequestMapping("/getInfo")
     public Map<String, String> getInfoTest() {
@@ -23,6 +29,15 @@ public class HostController {
     public String placeCard(@PathVariable("card") String card) {
 
         System.out.println("The player played " + card + " card");
+
+        return String.format("Hello %s!", card);
+    }
+
+    @GetMapping(path = "/discardPileRiggeing/{card}")
+    public String riggingDiscardPileCard(@PathVariable("card") String card) {
+
+        webHost.riggDiscardPile(card);
+        System.out.println("Rigging Discard Pile to  " + card + " card");
 
         return String.format("Hello %s!", card);
     }

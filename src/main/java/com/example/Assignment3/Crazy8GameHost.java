@@ -1,5 +1,7 @@
 package com.example.Assignment3;
 
+import java.util.regex.Pattern;
+
 public class Crazy8GameHost {
     private Crazy8Player[] players;
     protected int gameEndingScore = 100;
@@ -325,6 +327,40 @@ public class Crazy8GameHost {
         scoreBoard = scoreBoard + "\n\n";
 
         return scoreBoard;
+    }
+
+    protected Card stringToCard(String cardName){
+        Card card;
+        String regex = "([2-9]|10|[J|Q|K|A])([S|H|D|C])";
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+
+        if(Pattern.matches(regex, cardName)){
+            Card.Rank rank;
+            Card.Suit suit;
+
+            String[] cardChar = cardName.split("(?!^)");
+
+            if(cardChar.length == 2){
+                rank = Card.stringToRank(cardChar[0]);
+                suit = Card.stringToSuit(cardChar[1]);
+            } else if (cardChar.length == 2) {
+                rank = Card.stringToRank("10");
+                suit = Card.stringToSuit(cardChar[2]);
+            } else {
+                rank = Card.Rank.NONE;
+                suit = Card.Suit.NONE;
+            }
+
+            if(rank == Card.Rank.NONE || suit == Card.Suit.NONE){
+                return nullCard;
+            } else {
+                card = new Card(rank, suit);
+                return card;
+            }
+        } else {
+            return nullCard;
+        }
+
     }
 
 }

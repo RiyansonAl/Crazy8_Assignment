@@ -45,7 +45,21 @@ function playerCardFunction() {
 
     }
 
+}
 
+function discardPileCardFunction(){
+
+    if(document.getElementById('discardPileText').value != ""){
+        const discardPileValue = document.getElementById('discardPileText').value;
+        const discardURL = 'http://localhost:8080/discardPileRiggeing/' + discardPileValue;
+        const response = fetch(discardURL)
+        console.log(response)
+        document.getElementById("playerCardWarning").innerHTML = "Discard pile was updated";
+
+    } else {
+        document.getElementById("playerCardWarning").innerHTML = "No Card was selected";
+
+    }
 }
 
 function loadDoc() {

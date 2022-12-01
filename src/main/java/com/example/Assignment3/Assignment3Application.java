@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 @Controller
 public class Assignment3Application {
 	gameHostBackEnd webHost;
+	HostController hostcontroller;
 	int count = 0;
 
 	public static void main(String[] args) {
@@ -79,6 +80,7 @@ public class Assignment3Application {
 
 
 		webHost = new gameHostBackEnd(numPlayer);
+		hostcontroller = new HostController(webHost);
 		model.addAttribute("numPlayers", numPlayer);
 
 		return "hostWaitingPlayersPage.html";

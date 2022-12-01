@@ -77,6 +77,7 @@ public class gameHostBackEnd {
 
     }
 
+    //TODO: Delete the method below waitingForPlayer class replaces the method below
     //Loops until all the players join the game
     public void waitingForPlayers(){
         int numplayersWaiting = numOfPlayersRemaining;
@@ -117,6 +118,19 @@ public class gameHostBackEnd {
             case 4:
                 player4Input = input;
                 break;
+        }
+    }
+
+
+    public int riggDiscardPile(String stringCard){
+
+        Card card = gameHost.stringToCard(stringCard);
+        if(card.cardRank == Card.Rank.NONE || card.cardSuit == Card.Suit.NONE){
+            //Return 0 if it fails
+            return 0;
+        } else {
+            gameHost.setDiscardPile(card);
+            return 1;
         }
     }
 
