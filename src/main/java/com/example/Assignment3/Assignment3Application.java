@@ -85,7 +85,7 @@ public class Assignment3Application {
 
 	}
 
-	@RequestMapping("/player")
+	@RequestMapping("/confirmingPlayer")
 	public String joiningPlayers(Model model) {
 		/*
 		try {
@@ -97,9 +97,32 @@ public class Assignment3Application {
 			throw new RuntimeException(e);
 		}
 		 */
+		int playerNumber = webHost.joinGame();
 
-		model.addAttribute("playerNumberTitle", 2);
-		model.addAttribute("playerNumberBody", 2);
+		model.addAttribute("playerNumberTitle", playerNumber);
+		model.addAttribute("playerNumberBody", playerNumber);
+		model.addAttribute("playerNumberInput", playerNumber);
+
+
+		return "PlayerConfirmingPage.html";
+	}
+
+	@RequestMapping("/player")
+	public String PlayerPage(Model model, @ModelAttribute("playersNumber") String playerNum) {
+		/*
+		try {
+			Socket client = new Socket("localhost", 12345);
+			System.out.println("Created Client Socket");
+
+			client.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		 */
+
+		model.addAttribute("playerNumberTitle", playerNum);
+		model.addAttribute("playerNumberBody", playerNum);
+		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
 
 
 		return "playerPage.html";

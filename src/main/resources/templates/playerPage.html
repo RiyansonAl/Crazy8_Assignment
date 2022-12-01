@@ -3,11 +3,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Player <span th:text="${playerNumberTitle}" /> Page</title>
+    <title>Player Game Page</title>
 </head>
 <body>
-<h1>Player Page</h1>
+<h1>Player <span th:text="${playerNumberTitle}" /> Page</h1>
 Welcome Player <span th:text="${playerNumberBody}" />
+<br>
+<br>
+<h2>Console Output</h2>
+<br>
+<span th:text="${allPlayerMessage}" />
+<br>
+
+<script>
+            window.setTimeout(function(){
+                window.location.reload();
+            },1000);
+</script>
 
 </body>
 </html>

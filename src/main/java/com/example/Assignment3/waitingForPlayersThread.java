@@ -19,8 +19,8 @@ public class waitingForPlayersThread extends Thread {
         }
         //TODO: Remove Count only used for debugginh
         int count = 0;
-        //while(host.numOfPlayersRemaining > 0){
-        while (count < 10){
+        while(host.numOfPlayersRemaining > 0){
+        //while (count < 10){
 
             if(host.numOfPlayersRemaining <= numplayersWaiting){
                 numplayersWaiting = host.numOfPlayersRemaining;

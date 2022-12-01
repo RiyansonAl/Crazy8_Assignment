@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Confirmation Page</title>
+</head>
+<body>
+<h1>You are Player <span th:text="${playerNumberTitle}" /></h1>
+Welcome Player <span th:text="${playerNumberBody}" />. Press button below to continue to the game.
+
+
+<form action="/player" method="GET" id="continueButtonForm">
+  <input type="hidden" id="playernumber" name="playersNumber" th:value="*{playerNumberInput}" checked>
+  <input type="submit" value="Continue Game" id="continueButton">
+</form>
+
+
+
+</body>
+</html>
