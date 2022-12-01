@@ -12,6 +12,11 @@ Current time is <span th:text="${serverTime}" />
 Find this text
 Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
 <br>
+<h2>Console Output</h2>
+<br>
+<span th:text="${allPlayerMessage}" />
+<br>
+<br>
 Number of times this page has been refreshed: <span th:text="${count}" />
 <br><br><br>
 <form action="/waitingPlayers" method="post">

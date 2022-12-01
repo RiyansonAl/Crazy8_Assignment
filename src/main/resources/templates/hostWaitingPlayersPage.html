@@ -5,15 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Waiting for Players Lobby</h1>
+<h1>Confirming Number of Players</h1>
 
 <br>
-Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
+Are you sure you will be playing with <span th:text="${numPlayers}" /> players
 <br><br>
-<form action="/waitingPlayers" method="post">
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname"><br><br>
-    <input type="submit" value="Start Game">
+
+<form action="/" method="GET" id="backButtonForm">
+    <div>
+        <button id="backButton">Go Back</button>
+    </div>
+</form>
+
+<form action="/host" method="GET" id="startGameButtonForm">
+    <div>
+        <button id="startGameButton">Start Game</button>
+    </div>
 </form>
 
 

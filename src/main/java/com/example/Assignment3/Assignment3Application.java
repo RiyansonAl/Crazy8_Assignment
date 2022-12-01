@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 //@RestController
 @Controller
 public class Assignment3Application {
-	Player1Host webHost;
+	gameHostBackEnd webHost;
 	int count = 0;
 
 	public static void main(String[] args) {
@@ -32,12 +32,13 @@ public class Assignment3Application {
 
 	@CrossOrigin
 	@RequestMapping("/host")
-	public String player1Host(Model model, @ModelAttribute("numOfPlayers") int numPlayer) {
-		//Init the webhost
-		//int numPlayer = 3;
-		webHost = new Player1Host(numPlayer);
+	public String player1Host(Model model) {
+
 		//Object for player 1 with that players hands is displayed on screen
 		//Maybe Object for hands in the discard pile and displaying dicard pile on screen
+
+		model.addAttribute("numPlayers", webHost.getNumOfPlayersRemaining());
+		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
 		LocalDateTime myDateObj = LocalDateTime.now();
@@ -46,7 +47,6 @@ public class Assignment3Application {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		model.addAttribute("numPlayers", webHost.getNumOfPlayers());
 		count = count + 1;
 		model.addAttribute("count", count);
 
@@ -74,16 +74,12 @@ public class Assignment3Application {
 	}
 
 	@RequestMapping("/waitingPlayers")
-	public String player1HostWaitingPlayers(Model model) {
+	public String player1HostWaitingPlayers(Model model, @ModelAttribute("numOfPlayers") int numPlayer) {
 
-		LocalDateTime myDateObj = LocalDateTime.now();
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = myDateObj.format(myFormatObj);
 
-		model.addAttribute("serverTime", formattedDate);
-		
-		webHost.setNumOfPlayers(webHost.getNumOfPlayers() -1);
-		model.addAttribute("numPlayers", webHost.getNumOfPlayers());
+
+		webHost = new gameHostBackEnd(numPlayer);
+		model.addAttribute("numPlayers", numPlayer);
 
 		return "hostWaitingPlayersPage.html";
 
