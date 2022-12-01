@@ -58,9 +58,23 @@ function discardPileCardFunction(){
 
     } else {
         document.getElementById("playerCardWarning").innerHTML = "No Card was selected";
-
     }
 }
+
+function player1HandRiggedFunction(){
+
+    if(document.getElementById('Player1HandText').value != ""){
+        const player1HandValue = document.getElementById('Player1HandText').value;
+        const player1RiggURL = 'http://localhost:8080/playerHandRiggeing/1/' + player1HandValue;
+        const response = fetch(player1RiggURL)
+        console.log(response)
+        document.getElementById("Player1HandWarning").innerHTML = "Player 1's hand was updated";
+
+    } else {
+        document.getElementById("Player1HandWarning").innerHTML = "No Card was selected";
+    }
+}
+
 
 function loadDoc() {
   const xhttp = new XMLHttpRequest();

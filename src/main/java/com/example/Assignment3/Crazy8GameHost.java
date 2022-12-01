@@ -363,4 +363,9 @@ public class Crazy8GameHost {
 
     }
 
+    protected void setPlayerHand(int playerNum, Card[] hand){
+        players[playerNum-1].setPlayerHand(hand);
+
+    }
+
 }

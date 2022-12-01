@@ -134,6 +134,22 @@ public class gameHostBackEnd {
         }
     }
 
+    public int riggPlayerHand(int playerNum, String stringCards){
+
+        String[] playerHandString = stringCards.split(",");
+        Card[] playerHand = new Card[playerHandString.length];
+
+        for(int i = 0; i < playerHandString.length; i++){
+            playerHand[i] = gameHost.stringToCard(playerHandString[i]);
+            if(playerHand[i].cardRank == Card.Rank.NONE || playerHand[i].cardSuit == Card.Suit.NONE){
+                return 0;
+            }
+        }
+        gameHost.setPlayerHand(playerNum, playerHand);
+        return 1;
+
+    }
+
     //Start and play the game
     public void gameLoop(){
 
