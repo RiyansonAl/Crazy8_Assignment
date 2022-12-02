@@ -147,5 +147,23 @@ public class Assignment3Application {
 
 	}
 
+	@GetMapping(path = "/playerHandRiggeing/{playerNum}/{cards}")
+	public String playerHandRigging(@PathVariable("playerNum") int playerNum, @PathVariable("cards") String cards) {
+
+		System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
+		webHost.riggPlayerHand(playerNum, cards);
+		System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
+
+		return "riggingPage.html";
+	}
+	@GetMapping(path = "/discardPileRiggeing/{card}")
+	public String riggingDiscardPileCard(@PathVariable("card") String card) {
+
+		webHost.riggDiscardPile(card);
+		System.out.println("Rigging Discard Pile to  " + card + " card");
+
+		return "riggingPage.html";
+	}
+
 
 }

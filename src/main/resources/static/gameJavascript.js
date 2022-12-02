@@ -62,7 +62,7 @@ function discardPileCardFunction(){
 }
 
 function player1HandRiggedFunction(){
-
+    console.log("Entered Player 1 hand rigged function");
     if(document.getElementById('Player1HandText').value != ""){
         const player1HandValue = document.getElementById('Player1HandText').value;
         const player1RiggURL = 'http://localhost:8080/playerHandRiggeing/1/' + player1HandValue;
@@ -72,6 +72,48 @@ function player1HandRiggedFunction(){
 
     } else {
         document.getElementById("Player1HandWarning").innerHTML = "No Card was selected";
+    }
+}
+
+function player2HandRiggedFunction(){
+    console.log("Entered Player 2 hand rigged function");
+    if(document.getElementById('Player2HandText').value != ""){
+        const player2HandValue = document.getElementById('Player2HandText').value;
+        const player2RiggURL = 'http://localhost:8080/playerHandRiggeing/2/' + player2HandValue;
+        const response = fetch(player2RiggURL)
+        console.log(response)
+        document.getElementById("Player2HandWarning").innerHTML = "Player 2's hand was updated";
+
+    } else {
+        document.getElementById("Player2HandWarning").innerHTML = "No Card was selected";
+    }
+}
+
+function player3HandRiggedFunction(){
+    console.log("Entered Player 3 hand rigged function");
+    if(document.getElementById('Player3HandText').value != ""){
+        const player3HandValue = document.getElementById('Player3HandText').value;
+        const player3RiggURL = 'http://localhost:8080/playerHandRiggeing/3/' + player3HandValue;
+        const response = fetch(player3RiggURL)
+        console.log(response)
+        document.getElementById("Player3HandWarning").innerHTML = "Player 3's hand was updated";
+
+    } else {
+        document.getElementById("Player3HandWarning").innerHTML = "No Card was selected";
+    }
+}
+
+function player4HandRiggedFunction(){
+    console.log("Entered Player 4 hand rigged function");
+    if(document.getElementById('Player4HandText').value != ""){
+        const player4HandValue = document.getElementById('Player4HandText').value;
+        const player4RiggURL = 'http://localhost:8080/playerHandRiggeing/4/' + player4HandValue;
+        const response = fetch(player4RiggURL)
+        console.log(response)
+        document.getElementById("Player4HandWarning").innerHTML = "Player 4's hand was updated";
+
+    } else {
+        document.getElementById("Player4HandWarning").innerHTML = "No Card was selected";
     }
 }
 

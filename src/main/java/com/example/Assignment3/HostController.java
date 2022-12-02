@@ -37,23 +37,5 @@ public class HostController {
         return String.format("Hello %s!", card);
     }
 
-    @GetMapping(path = "/discardPileRiggeing/{card}")
-    public String riggingDiscardPileCard(@PathVariable("card") String card) {
-
-        webHost.riggDiscardPile(card);
-        System.out.println("Rigging Discard Pile to  " + card + " card");
-
-        return String.format("Hello %s!", card);
-    }
-
-    @GetMapping(path = "/playerHandRiggeing/{playerNum}/{cards}")
-    public String playerHandRigging(@PathVariable("playerNum") int playerNum, @PathVariable("cards") String cards) {
-
-        webHost.riggPlayerHand(playerNum, cards);
-        System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
-
-        return String.format("Hello %s!", cards);
-    }
-
 
 }
