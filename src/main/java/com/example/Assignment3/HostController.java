@@ -10,8 +10,12 @@ public class HostController {
 
     gameHostBackEnd webHost;
 
-    public HostController(gameHostBackEnd backEndHost){
-        webHost = backEndHost;
+    public HostController(){
+
+    }
+
+    public void setgameHostBackEnd(gameHostBackEnd host){
+        webHost = host;
     }
 
     @CrossOrigin

@@ -40,7 +40,9 @@ public class Assignment3Application {
 
 		model.addAttribute("numPlayers", webHost.getNumOfPlayersRemaining());
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
-		model.addAttribute("PlayerHand", webHost.getPlayerHand(1));
+		if(webHost.gameHost != null) {
+			model.addAttribute("PlayerHand", webHost.getPlayerHand(1));
+		}
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
 		LocalDateTime myDateObj = LocalDateTime.now();
@@ -81,7 +83,8 @@ public class Assignment3Application {
 
 
 		webHost = new gameHostBackEnd(numPlayer);
-		hostcontroller = new HostController(webHost);
+		hostcontroller = new HostController();
+		hostcontroller.setgameHostBackEnd(webHost);
 		model.addAttribute("numPlayers", numPlayer);
 
 		return "hostWaitingPlayersPage.html";
