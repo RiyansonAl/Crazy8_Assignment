@@ -14,6 +14,21 @@ Welcome Player <span th:text="${playerNumberBody}" />
 <br>
 <span th:text="${allPlayerMessage}" />
 <br>
+<br>
+<h4>Players Hand </h4>
+<br>
+<span th:text="${PlayerHand}" />
+<br>
+<br>
+
+<form id="playerCardForm">
+    <div>
+        <label for="playerCardField">Enter the card you want to play?</label>
+        <input name="playerCard" id="playerCardField">
+        <button type="button" onclick="playerCardFunction()" id="playerCardButton">Place Card</button>
+        <p id="playerCardWarning"></p>
+    </div>
+</form>
 
 <script>
             window.setTimeout(function(){

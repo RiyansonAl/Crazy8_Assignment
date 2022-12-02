@@ -129,6 +129,10 @@ public class Assignment3Application {
 		model.addAttribute("playerNumberTitle", playerNum);
 		model.addAttribute("playerNumberBody", playerNum);
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
+		if(webHost.gameHost != null) {
+			int playerNumInt = Integer.valueOf(playerNum);
+			model.addAttribute("PlayerHand", webHost.getPlayerHand(playerNumInt));
+		}
 
 
 		return "playerPage.html";
