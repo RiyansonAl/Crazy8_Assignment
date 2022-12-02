@@ -232,11 +232,19 @@ public class seleniumTest {
         WebElement player1Text = hostBrowser.findElement(By.xpath("//*[text() != '']"));
         assertTrue((player1Text.getText().contains(Player1HandRigged)));
 
+        riggingBrowser.quit();
+        player2Browser.quit();
+        player3Browser.quit();
+        player4Browser.quit();
+        hostBrowser.quit();
+/*
         riggingBrowser.close();
         player2Browser.close();
         player3Browser.close();
         player4Browser.close();
         hostBrowser.close();
+
+ */
 
 
     }
