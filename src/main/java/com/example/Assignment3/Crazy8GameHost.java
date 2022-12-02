@@ -372,4 +372,19 @@ public class Crazy8GameHost {
 
     }
 
+    public void drawCardForDiscardPile(){
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        Card drawnCard = deck.drawCard(nullCard);
+        setDiscardPile(drawnCard);
+    }
+
+    public int getCurrentPlayerNum(){
+        for(int i = 0; i < players.length; i++){
+            if(currentPlayer == players[i]){
+                return i+1;
+            }
+        }
+        return -1;
+    }
+
 }

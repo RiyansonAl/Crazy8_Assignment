@@ -208,7 +208,7 @@ public class seleniumTest {
 
         //Sleep for 20 seconds to let the game start first
         try {
-            Thread.sleep(20000);
+            Thread.sleep(25000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -297,7 +297,7 @@ public class seleniumTest {
 
         //Sleep for 20 seconds to let the game start first
         try {
-            Thread.sleep(20000);
+            Thread.sleep(25000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -310,9 +310,9 @@ public class seleniumTest {
         riggingBrowser.findElement(By.id("discardPileText")).sendKeys(DiscardPile);
         riggingBrowser.findElement(By.id("discardPileButton")).sendKeys(Keys.ENTER);
 
-        //Sleep for 3 seconds
+        //Sleep for 5 seconds
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }

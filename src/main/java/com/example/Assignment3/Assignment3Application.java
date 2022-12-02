@@ -159,7 +159,7 @@ public class Assignment3Application {
 	@GetMapping(path = "/discardPileRiggeing/{card}")
 	public String riggingDiscardPileCard(@PathVariable("card") String card) {
 
-		webHost.riggDiscardPile(card);
+		int valid = webHost.riggDiscardPile(card);
 		System.out.println("Rigging Discard Pile to  " + card + " card");
 
 		return "riggingPage.html";
