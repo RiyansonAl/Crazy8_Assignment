@@ -3,7 +3,7 @@ package com.example.Assignment3;
 import java.util.regex.Pattern;
 
 public class Crazy8GameHost {
-    private Crazy8Player[] players;
+    Crazy8Player[] players;
     protected int gameEndingScore = 100;
     CardDeck deck;
     Card discardPile;

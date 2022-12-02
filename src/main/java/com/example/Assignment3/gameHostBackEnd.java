@@ -21,6 +21,7 @@ public class gameHostBackEnd {
     String player4Input;
 
     Crazy8GameHost gameHost;
+    MainGameThread mainThread;
 
     public gameHostBackEnd(int numPlayers){
         allPlayersConnected = false;
@@ -33,6 +34,7 @@ public class gameHostBackEnd {
         numOfJoinedPlayers = 1;
         //TODO: Create a thread and call waitingForPlayers method
         waitingForPlayersThread waitingPlayers = new waitingForPlayersThread(this);
+        mainThread = new MainGameThread(this);
         waitingPlayers.start();
         System.out.println("Thread started");
         allPlayersOutput = "Back End Thread Created and started";
