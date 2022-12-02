@@ -17,7 +17,21 @@ Waiting for Players ( <span th:text="${numPlayers}" /> players left to join)
 <span th:text="${allPlayerMessage}" />
 <br>
 <br>
-Number of times this page has been refreshed: <span th:text="${count}" />
+<h4>Players Hand </h4>
+<br>
+<span th:text="${PlayerHand}" />
+<br>
+<br>
+
+<form id="playerCardForm">
+    <div>
+        <label for="playerCardField">Enter the card you want to play?</label>
+        <input name="playerCard" id="playerCardField">
+        <button type="button" onclick="playerCardFunction()" id="playerCardButton">Place Card</button>
+        <p id="playerCardWarning"></p>
+    </div>
+</form>
+
 <br><br><br>
 <form action="/waitingPlayers" method="post">
     <label for="fname">First name:</label>
@@ -52,14 +66,7 @@ document.getElementById("demo2").innerHTML = "Hello JavaScript!!";
 </div>
 
 
-<form id="playerCardForm">
-    <div>
-        <label for="playerCardField">Enter the card you want to play?</label>
-        <input name="playerCard" id="playerCardField">
-        <button type="button" onclick="playerCardFunction()" id="playerCardButton">Place Card</button>
-        <p id="playerCardWarning"></p>
-    </div>
-</form>
+
 
 </body>
 </html>

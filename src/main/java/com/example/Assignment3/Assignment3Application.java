@@ -40,6 +40,7 @@ public class Assignment3Application {
 
 		model.addAttribute("numPlayers", webHost.getNumOfPlayersRemaining());
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
+		model.addAttribute("PlayerHand", webHost.getPlayerHand(1));
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
 		LocalDateTime myDateObj = LocalDateTime.now();

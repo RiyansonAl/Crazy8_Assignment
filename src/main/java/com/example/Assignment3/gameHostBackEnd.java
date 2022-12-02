@@ -150,6 +150,10 @@ public class gameHostBackEnd {
 
     }
 
+    public String getPlayerHand(int playerNum){
+        return gameHost.getPlayerHand(playerNum);
+    }
+
     //Start and play the game
     public void gameLoop(){
 

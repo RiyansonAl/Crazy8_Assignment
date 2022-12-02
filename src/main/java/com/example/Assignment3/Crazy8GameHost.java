@@ -60,6 +60,10 @@ public class Crazy8GameHost {
         roundEnded = false;
     }
 
+    protected String getPlayerHand(int playerNum){
+        return this.printHand(players[playerNum-1]);
+    }
+
     protected String printHand(Crazy8Player player){
         Card[] playerHand = player.getPlayerHand();
         String handInString = "";

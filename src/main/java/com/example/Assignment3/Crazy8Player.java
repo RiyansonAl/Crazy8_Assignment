@@ -12,6 +12,9 @@ public class Crazy8Player {
     public Crazy8Player(int playerNumber){
         playerNum = playerNumber;
         score = 0;
+        //Start off with a null hand
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        playerHand = new Card[]{nullCard, nullCard, nullCard, nullCard, nullCard};
     }
 
     public void setPlayerHand(Card[] hand){
