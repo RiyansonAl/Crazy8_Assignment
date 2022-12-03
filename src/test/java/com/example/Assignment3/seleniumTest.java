@@ -386,7 +386,7 @@ public class seleniumTest {
 
         //Sleep for 3 seconds
         try {
-            Thread.sleep(3000);
+            Thread.sleep(25000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -401,9 +401,9 @@ public class seleniumTest {
         riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRigged);
         riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
 
-        //Sleep for 3 seconds
+        //Sleep for 5 seconds
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
@@ -411,19 +411,27 @@ public class seleniumTest {
         //Player 1 play card
         String Player1CardPlayed = "3H";
         hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
-        riggingBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        hostBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
 
+        //Sleep for 6 seconds to allow the page to refresh
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
         //Check the card was played
         WebElement player1Text = hostBrowser.findElement(By.xpath("//*[text() != '']"));
-        String player1Message = "Player 1 plays: 3H";
+        String player1Message = "Discard Pile Top Card: 3H";
+        System.out.println(player1Text.getText());
         assertTrue((player1Text.getText().contains(player1Message)));
 
 
 
-        player2Browser.close();
-        player3Browser.close();
-        player4Browser.close();
-        hostBrowser.close();
+        riggingBrowser.quit();
+        player2Browser.quit();
+        player3Browser.quit();
+        player4Browser.quit();
+        hostBrowser.quit();
 
 
     }
