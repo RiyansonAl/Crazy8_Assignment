@@ -555,6 +555,122 @@ public class seleniumTest {
 
     }
 
+    @Test
+    @DisplayName("Player 1 plays draws a card and adds it to there hand")
+    public void player1_draws_a_card() {
+        WebDriver hostBrowser;
+        WebDriver player2Browser;
+        WebDriver player3Browser;
+        WebDriver player4Browser;
+        WebDriver riggingBrowser;
+
+        System.setProperty(webDriverType, webDriverLocation);
+        hostBrowser = new ChromeDriver();
+        hostBrowser.get("http://localhost:8080");
+        WebElement button = hostBrowser.findElement(By.id("hostGameButton"));
+        //assertTrue((button.isDisplayed()));
+        //button.click();
+        hostBrowser.findElement(By.id("nameField")).sendKeys("Hello Riyanson");
+        hostBrowser.findElement(By.id("hostButton")).sendKeys(Keys.ENTER);
+        hostBrowser.findElement(By.id("startGameButton")).sendKeys(Keys.ENTER);
+
+        //WebElement e = hostBrowser.findElement(By.xpath("//*[text()='Find this text']"));
+        WebElement e = hostBrowser.findElement(By.xpath("//*[text() != '']"));
+        System.out.println("e.isDisplayed(): " + e.isDisplayed() );
+        assertTrue((e.isDisplayed()));
+        System.out.println("Element with text(): " + e.getText() );
+        String playersRemaining = "3 players left to join";
+        System.out.println("Contains the players remaining? : " + e.getText().contains(playersRemaining) );
+        //hostBrowser.findElement(By.name("Greet me!")).sendKeys(Keys.ENTER);
+
+        //Player 2 joining the Game
+        player2Browser = new ChromeDriver();
+        player2Browser.get("http://localhost:8080");
+        player2Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player2Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
+        WebElement player2Text = player2Browser.findElement(By.xpath("//*[text() != '']"));
+        String player2Message = "Welcome Player 2";
+        assertTrue((player2Text.getText().contains(player2Message)));
+
+        //Player 3 Joining the Game
+        player3Browser = new ChromeDriver();
+        player3Browser.get("http://localhost:8080");
+        player3Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player3Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
+        WebElement player3Text = player3Browser.findElement(By.xpath("//*[text() != '']"));
+        String player3Message = "Welcome Player 3";
+        assertTrue((player3Text.getText().contains(player3Message)));
+
+        //Player 4 Joining the Game
+        player4Browser = new ChromeDriver();
+        player4Browser.get("http://localhost:8080");
+        player4Browser.findElement(By.id("joinGameButton")).sendKeys(Keys.ENTER);
+        player4Browser.findElement(By.id("continueButton")).sendKeys(Keys.ENTER);
+        WebElement player4Text = player4Browser.findElement(By.xpath("//*[text() != '']"));
+        String player4Message = "Welcome Player 4";
+        assertTrue((player4Text.getText().contains(player4Message)));
+
+        //Sleep for 3 seconds
+        try {
+            Thread.sleep(25000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Rigg the player 1
+        riggingBrowser = new ChromeDriver();
+        riggingBrowser.get("http://localhost:8080/riggingPage");
+        String DiscardPile = "4H";
+        String Player1HandRigged = "3H,6D,7C,5H";
+        riggingBrowser.findElement(By.id("discardPileText")).sendKeys(DiscardPile);
+        riggingBrowser.findElement(By.id("discardPileButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRigged);
+        riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
+
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 1 draw a card
+        String Player1HandRiggedNew = "3H,6D,7C,5H,8C";
+        hostBrowser.findElement(By.id("drawCardButton")).sendKeys(Keys.ENTER);
+
+        //Sleep for 6 seconds to have the hand update
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Rigg hand for the drawn card
+        riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRiggedNew);
+        riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
+
+
+        //Sleep for 10 seconds to allow all the pages to refresh
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+        //Check the card was played
+        WebElement player1Text = hostBrowser.findElement(By.xpath("//*[text() != '']"));
+        String player1Message = "Discard Pile Top Card: 7H";
+        System.out.println(player1Text.getText());
+        assertTrue((player1Text.getText().contains(player1Message)));
+
+
+        riggingBrowser.quit();
+        player2Browser.quit();
+        player3Browser.quit();
+        player4Browser.quit();
+        hostBrowser.quit();
+
+    }
+
 
 
 
