@@ -129,6 +129,8 @@ public class Assignment3Application {
 		model.addAttribute("playerNumberTitle", playerNum);
 		model.addAttribute("playerNumberBody", playerNum);
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
+		model.addAttribute("hiddenPlayerNum", playerNum);
+		model.addAttribute("hiddenPlayerNum2", playerNum);
 		if(webHost.gameHost != null) {
 			int playerNumInt = Integer.valueOf(playerNum);
 			model.addAttribute("PlayerHand", webHost.getPlayerHand(playerNumInt));
@@ -174,6 +176,17 @@ public class Assignment3Application {
 		//System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
 
 		return "hostPage.html";
+	}
+
+	@GetMapping(path = "/PlayerPlaysCard/{playerNum}/{card}/{suit}")
+	public String anyPlayerPlayingCard(@PathVariable("playerNum") int playerNum, @PathVariable("card") String card, @PathVariable("suit") String suit) {
+
+		System.out.println("Player " + playerNum + ":  " + card + " With a suit of  " + suit);
+		String playerInput = card + "," + suit;
+		webHost.setPlayerOutput(playerNum, playerInput);
+		//System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
+
+		return "playerPage.html";
 	}
 
 

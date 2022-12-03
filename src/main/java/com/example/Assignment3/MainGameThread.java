@@ -79,6 +79,8 @@ public class MainGameThread extends Thread{
                         host.allPlayersOutput = host.allPlayersOutput + "The player cannot put this card down choose another card. ";
                         host.allPlayersOutput = host.allPlayersOutput + "It is still Player " + host.gameHost.getCurrentPlayerNum() + " Turn";
                     } else {
+                        //Set Player input back to null
+                        host.setPlayerOutput(host.gameHost.getCurrentPlayerNum(), "");
                         //Set the turn Order for the next players
                         host.gameHost.getNextPlayer();
                     }

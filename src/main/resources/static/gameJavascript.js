@@ -47,6 +47,37 @@ function playerCardFunction() {
 
 }
 
+function playerPlaceCardFunction() {
+    console.log(document.getElementById('playerCardField').value)
+    if(document.getElementById('playerCardField').value != ""){
+        document.getElementById("playerCardWarning").innerHTML = "Card was sent";
+        const playCardUrl = 'http://localhost:8080/playerPlaysCard'
+        const cardValue = document.getElementById('playerCardField').value;
+        console.log(cardValue)
+        /*
+        const playerNumber2 = document.getElementById('hiddenPlayerNumber2').value;
+        console.log(playerNumber2)
+        const playerNumber = document.getElementById('hiddenPlayerNumber').value;
+        console.log(playerNumber)
+        const cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+        console.log(cardUrl)
+        const response = fetch(cardUrl)
+        console.log(response)
+        */
+
+
+        document.getElementById('playerCardField').value = "";
+
+    } else {
+        document.getElementById("playerCardWarning").innerHTML = "No Card was selected";
+        document.getElementById('playerCardField').value = "";
+        window.location.reload(true);
+
+    }
+
+}
+
+
 function discardPileCardFunction(){
 
     if(document.getElementById('discardPileText').value != ""){

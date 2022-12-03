@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Player Game Page</title>
+    <script type="text/javascript" th:src="@{/gameJavascript.js}" ></script>
 </head>
 <body>
 <h1>Player <span th:text="${playerNumberTitle}" /> Page</h1>
@@ -25,8 +26,14 @@ Welcome Player <span th:text="${playerNumberBody}" />
     <div>
         <label for="playerCardField">Enter the card you want to play?</label>
         <input name="playerCard" id="playerCardField">
-        <button type="button" onclick="playerCardFunction()" id="playerCardButton">Place Card</button>
+        <button type="button" onclick="playerPlaceCardFunction()" id="playerCardButton">Place Card</button>
         <p id="playerCardWarning"></p>
+    </div>
+</form>
+
+<form id="hiddenForm">
+    <div>
+        <input name="playerNumHidden" id="hiddenPlayerNumber" type="hidden" th:value="${hiddenPlayerNum}">
     </div>
 </form>
 
@@ -34,6 +41,34 @@ Welcome Player <span th:text="${playerNumberBody}" />
             window.setTimeout(function(){
                 window.location.reload();
             },5000);
+</script>
+
+
+<script>
+function playerPlaceCardFunction() {
+    console.log(document.getElementById('playerCardField').value)
+    if(document.getElementById('playerCardField').value != ""){
+        document.getElementById("playerCardWarning").innerHTML = "Card was sent";
+        const playCardUrl = 'http://localhost:8080/PlayerPlaysCard'
+        const cardValue = document.getElementById('playerCardField').value;
+        const playerNumber = document.getElementById('hiddenPlayerNumber').value;
+        console.log(playerNumber)
+        const cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+        console.log(cardUrl)
+        const response = fetch(cardUrl)
+        console.log(response)
+
+        document.getElementById('playerCardField').value = "";
+
+    } else {
+        document.getElementById("playerCardWarning").innerHTML = "No Card was selected";
+        document.getElementById('playerCardField').value = "";
+        window.location.reload(true);
+
+    }
+
+}
+
 </script>
 
 </body>

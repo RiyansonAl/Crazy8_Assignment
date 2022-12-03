@@ -437,7 +437,7 @@ public class seleniumTest {
 
     @Test
     @DisplayName("Join game and Player 1 plays a card, Then player 2 plays a card next")
-    public void player1_and_player_plays_card() {
+    public void player1_and_player2_plays_card() {
         WebDriver hostBrowser;
         WebDriver player2Browser;
         WebDriver player3Browser;
@@ -507,7 +507,7 @@ public class seleniumTest {
         riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRigged);
         riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
         String Player2HandRigged = "7H,7C,5H,8D";
-        riggingBrowser.findElement(By.id("Player2HandText")).sendKeys(Player1HandRigged);
+        riggingBrowser.findElement(By.id("Player2HandText")).sendKeys(Player2HandRigged);
         riggingBrowser.findElement(By.id("Player2HandButton")).sendKeys(Keys.ENTER);
 
         //Sleep for 5 seconds
@@ -534,9 +534,9 @@ public class seleniumTest {
         player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
         player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
 
-        //Sleep for 6 seconds to allow the page to refresh
+        //Sleep for 10 seconds to allow all the pages to refresh
         try {
-            Thread.sleep(6000);
+            Thread.sleep(10000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
