@@ -165,5 +165,16 @@ public class Assignment3Application {
 		return "riggingPage.html";
 	}
 
+	@GetMapping(path = "/hostPlaysCard/{card}/{suit}")
+	public String player1PlayingCard(@PathVariable("card") String card, @PathVariable("suit") String suit) {
+
+		System.out.println("Player 1 playing:  " + card + " With a suit of  " + suit);
+		String playerInput = card + "," + suit;
+		webHost.setPlayerOutput(1, playerInput);
+		//System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
+
+		return "hostPage.html";
+	}
+
 
 }

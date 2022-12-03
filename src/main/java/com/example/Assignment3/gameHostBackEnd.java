@@ -156,8 +156,31 @@ public class gameHostBackEnd {
         return gameHost.getPlayerHand(playerNum);
     }
 
-    //Start and play the game
-    public void gameLoop(){
 
+    public String playerInputReady(int playerNum){
+        String playerInput = "";
+        switch(playerNum){
+            case 1:
+                playerInput = player1Input;
+                break;
+            case 2:
+                playerInput = player2Input;
+                break;
+            case 3:
+                playerInput = player3Input;
+                break;
+            case 4:
+                playerInput = player4Input;
+                break;
+        }
+
+        if(playerInput != ""){
+            return playerInput;
+        } else {
+            return "";
+        }
     }
+
+
+
 }

@@ -29,9 +29,9 @@ function playerCardFunction() {
     console.log(document.getElementById('playerCardField').value)
     if(document.getElementById('playerCardField').value != ""){
         document.getElementById("playerCardWarning").innerHTML = "Card was sent";
-
+        const playCardUrl = 'http://localhost:8080/hostPlaysCard'
         const cardValue = document.getElementById('playerCardField').value;
-        const cardUrl = url2 + "/" + cardValue;
+        const cardUrl = playCardUrl + "/" + cardValue + "/NONE";
         console.log(cardUrl)
         const response = fetch(cardUrl)
         console.log(response)

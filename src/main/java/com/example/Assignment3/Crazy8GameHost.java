@@ -387,4 +387,12 @@ public class Crazy8GameHost {
         return -1;
     }
 
+    public Crazy8Player getCurrentPlayer(){
+        return currentPlayer;
+    }
+
+    public Card.Suit getCardSuit(String stringSuit){
+        return Card.stringToSuit(stringSuit);
+    }
+
 }
