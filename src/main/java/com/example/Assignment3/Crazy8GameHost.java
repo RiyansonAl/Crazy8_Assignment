@@ -13,6 +13,7 @@ public class Crazy8GameHost {
     protected boolean skipNextTurn;
     protected boolean play2Cards;
     protected boolean roundEnded;
+    protected boolean gameover;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -24,6 +25,7 @@ public class Crazy8GameHost {
         skipNextTurn = false;
         play2Cards = false;
         roundEnded = false;
+        gameover = false;
     }
 
     protected Card playerDrawCard (Card riggedCard){
@@ -264,10 +266,13 @@ public class Crazy8GameHost {
                     }
                 }
                 endRoundString = endRoundString + "The winner is player " + lowestScorePlayer.getPlayerNum() + " with a score of " + lowestScore + "\n";
+                gameover = true;
+            } else {
+                endRoundString = endRoundString + "No Winner yet Moving on to the next Round";
             }
 
         } else {
-            endRoundString = endRoundString + "Round has not ended";
+            endRoundString = endRoundString + "Next Player's Turn";
         }
         return endRoundString;
     }
@@ -330,6 +335,14 @@ public class Crazy8GameHost {
 
         scoreBoard = scoreBoard + "\n\n";
 
+        return scoreBoard;
+    }
+
+    protected String printScoreBoardInLine(){
+        String scoreBoard = "SCOREBOARD: ";
+        for(int i = 0; i < players.length; i++){
+            scoreBoard = scoreBoard +"Player "+ (i+1) + " Score: " + players[i].getScore() + ". \n";
+        }
         return scoreBoard;
     }
 

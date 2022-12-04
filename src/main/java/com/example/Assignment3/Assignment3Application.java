@@ -189,5 +189,18 @@ public class Assignment3Application {
 		return "playerPage.html";
 	}
 
+	@GetMapping(path = "/drawCard/{playerNum}")
+	public String playerDrawingCard(@PathVariable("playerNum") int playerNum) {
+
+		webHost.playerDrawCard(playerNum);
+		System.out.println("Player " + playerNum + " drawing a card");
+
+		if(playerNum == 1){
+			return "hostPage.html";
+		} else {
+			return "playerPage.html";
+		}
+	}
+
 
 }

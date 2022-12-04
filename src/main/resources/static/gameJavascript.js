@@ -47,6 +47,17 @@ function playerCardFunction() {
 
 }
 
+function drawCardFunctionHost(){
+    const drawCardUrl = 'http://localhost:8080/drawCard/1';
+    console.log(drawCardUrl);
+    const response = fetch(drawCardUrl);
+    console.log(response);
+    document.getElementById("playerCardWarning").innerHTML = "Player Drawing a Card";
+
+
+
+}
+
 function playerPlaceCardFunction() {
     console.log(document.getElementById('playerCardField').value)
     if(document.getElementById('playerCardField').value != ""){

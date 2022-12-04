@@ -181,6 +181,12 @@ public class gameHostBackEnd {
         }
     }
 
+    public void playerDrawCard(int playerNum){
+        Card nullCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        gameHost.playerDrawCard(nullCard);
+
+    }
+
 
 
 }
