@@ -14,6 +14,8 @@ public class Crazy8GameHost {
     protected boolean play2Cards;
     protected boolean roundEnded;
     protected boolean gameover;
+    protected int currentPlayerCardDrawn;
+    protected Card lastDrawnCard;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -26,6 +28,8 @@ public class Crazy8GameHost {
         play2Cards = false;
         roundEnded = false;
         gameover = false;
+        currentPlayerCardDrawn = 0;
+        lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
     protected Card playerDrawCard (Card riggedCard){
@@ -33,6 +37,18 @@ public class Crazy8GameHost {
         currentPlayer.addCardToHand(drawnCard);
         return drawnCard;
     }
+
+    //TODO: Player draws card and can only play this drawn card or they will have to pick up, up to 3 cards and end turn
+    protected Card playerChoosesToDrawCard (Card riggedCard){
+        Card drawnCard = playerDrawCard(riggedCard);
+        //If same current player need to increase counter for drawn cards
+        currentPlayerCardDrawn = currentPlayerCardDrawn + 1;
+        lastDrawnCard = drawnCard;
+        //Check to see if the drawn card can be played. If not then prompt to draw another card or automatically draw another card
+
+        return drawnCard;
+    }
+
     protected Card drawCard (Card riggedCard){
 
         return deck.drawCard(riggedCard);
@@ -60,6 +76,8 @@ public class Crazy8GameHost {
         skipNextTurn = false;
         play2Cards = false;
         roundEnded = false;
+        currentPlayerCardDrawn = 0;
+        lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
     protected String getPlayerHand(int playerNum){
@@ -197,6 +215,9 @@ public class Crazy8GameHost {
     protected Crazy8Player getNextPlayer(){
         int currentPlayerNum = currentPlayer.getPlayerNum();
         int numOfPlayers = players.length;
+        //Reset the last drawn card and drawn card count for last player
+        currentPlayerCardDrawn = 0;
+        lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
 
         int nextPlayerNum = 0;
         if(fwdTurnOrder == true){
