@@ -27,6 +27,7 @@ Welcome Player <span th:text="${playerNumberBody}" />
         <label for="playerCardField">Enter the card you want to play?</label>
         <input name="playerCard" id="playerCardField">
         <button type="button" onclick="playerPlaceCardFunction()" id="playerCardButton">Place Card</button>
+        <button type="button" onclick="drawCardFunctionPlayer()" id="drawCardButton">Draw A Card</button>
         <p id="playerCardWarning"></p>
     </div>
 </form>
@@ -67,6 +68,15 @@ function playerPlaceCardFunction() {
 
     }
 
+}
+
+function drawCardFunctionPlayer(){
+    const playerNumber = document.getElementById('hiddenPlayerNumber').value;
+    const drawCardUrl = 'http://localhost:8080/drawCard/' + playerNumber;
+    console.log(drawCardUrl);
+    const response = fetch(drawCardUrl);
+    console.log(response);
+    document.getElementById("playerCardWarning").innerHTML = "Player Drawing a Card";
 }
 
 </script>

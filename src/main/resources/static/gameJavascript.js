@@ -53,9 +53,6 @@ function drawCardFunctionHost(){
     const response = fetch(drawCardUrl);
     console.log(response);
     document.getElementById("playerCardWarning").innerHTML = "Player Drawing a Card";
-
-
-
 }
 
 function playerPlaceCardFunction() {

@@ -646,6 +646,7 @@ public class seleniumTest {
         }
 
         //Rigg hand for the drawn card
+        riggingBrowser.findElement(By.id("Player1HandText")).clear();
         riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRiggedNew);
         riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
 
@@ -658,9 +659,8 @@ public class seleniumTest {
         }
         //Check the card was played
         WebElement player1Text = hostBrowser.findElement(By.xpath("//*[text() != '']"));
-        String player1Message = "Discard Pile Top Card: 7H";
         System.out.println(player1Text.getText());
-        assertTrue((player1Text.getText().contains(player1Message)));
+        assertTrue((player1Text.getText().contains(Player1HandRiggedNew)));
 
 
         riggingBrowser.quit();
