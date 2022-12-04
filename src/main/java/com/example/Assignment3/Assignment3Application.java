@@ -36,12 +36,14 @@ public class Assignment3Application {
 	public String player1Host(Model model) {
 
 		//Object for player 1 with that players hands is displayed on screen
-		//Maybe Object for hands in the discard pile and displaying dicard pile on screen
+		//Maybe Object for hands in the discard pile and displaying discard pile on screen
 
 		model.addAttribute("numPlayers", webHost.getNumOfPlayersRemaining());
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
+
 		if(webHost.gameHost != null) {
 			model.addAttribute("PlayerHand", webHost.getPlayerHand(1));
+			model.addAttribute("turnOrderDirection", webHost.getTurnOrderDirection());
 		}
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
@@ -134,6 +136,7 @@ public class Assignment3Application {
 		if(webHost.gameHost != null) {
 			int playerNumInt = Integer.valueOf(playerNum);
 			model.addAttribute("PlayerHand", webHost.getPlayerHand(playerNumInt));
+			model.addAttribute("turnOrderDirection", webHost.getTurnOrderDirection());
 		}
 
 

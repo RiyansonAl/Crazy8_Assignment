@@ -187,6 +187,18 @@ public class gameHostBackEnd {
 
     }
 
+    public String getTurnOrderDirection(){
+
+        String turnOrder = "";
+        if(gameHost.fwdTurnOrder){
+            turnOrder = "left";
+        } else {
+            turnOrder = "right";
+        }
+        return turnOrder;
+
+    }
+
 
 
 }
