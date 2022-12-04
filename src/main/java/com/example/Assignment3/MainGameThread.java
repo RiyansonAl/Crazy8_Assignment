@@ -48,6 +48,10 @@ public class MainGameThread extends Thread{
             int count = 0;
             while (host.gameHost.roundEnded == false) {
                 host.allPlayersOutput = "Discard Pile Top Card: " + host.gameHost.getDiscardPile().toString() + " \n ";
+                //Message if the last players turn was skipped
+                if(host.gameHost.lastPlayerTurnSkipped == true){
+                    host.allPlayersOutput = host.allPlayersOutput + "Player " + host.gameHost.lastPlayerNum + " got there turn skipped. \n";
+                }
                 host.allPlayersOutput = host.allPlayersOutput + "It is Player " + host.gameHost.getCurrentPlayerNum() + " Turn";
 
                 //TODO: ignore inputs of all players but the current player

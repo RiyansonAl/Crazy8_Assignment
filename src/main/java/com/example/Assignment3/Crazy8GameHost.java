@@ -16,6 +16,8 @@ public class Crazy8GameHost {
     protected boolean gameover;
     protected int currentPlayerCardDrawn;
     protected Card lastDrawnCard;
+    protected  int lastPlayerNum;
+    protected boolean lastPlayerTurnSkipped;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -28,6 +30,8 @@ public class Crazy8GameHost {
         play2Cards = false;
         roundEnded = false;
         gameover = false;
+        lastPlayerTurnSkipped = false;
+        lastPlayerNum = 0;
         currentPlayerCardDrawn = 0;
         lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
@@ -224,14 +228,20 @@ public class Crazy8GameHost {
             //Skip next players turn
             if(skipNextTurn){
                 //Adding 1 here since currentPlayerNum is already one greater than array position
+                lastPlayerTurnSkipped = true;
+                lastPlayerNum = currentPlayerNum + 1;
                 nextPlayerNum = currentPlayerNum + 1;
                 if(nextPlayerNum == numOfPlayers){
                     nextPlayerNum = 0;
-                } else if (nextPlayerNum > nextPlayerNum){
+                } else if (nextPlayerNum > numOfPlayers){
                     nextPlayerNum = 1;
+                    lastPlayerNum = 1;
                 }
                 skipNextTurn = false;
             } else {
+                lastPlayerTurnSkipped = false;
+                lastPlayerNum = currentPlayerNum;
+
                 //not adding anything here since currentPlayerNum is already one greater than array position
                 nextPlayerNum = currentPlayerNum;
                 if (nextPlayerNum >= numOfPlayers) {
@@ -244,6 +254,11 @@ public class Crazy8GameHost {
         } else{
             //Reverse order
             if(skipNextTurn){
+                lastPlayerTurnSkipped = true;
+                lastPlayerNum = currentPlayerNum - 1;
+                if(lastPlayerNum == 0){
+                    lastPlayerNum = numOfPlayers;
+                }
                 nextPlayerNum = currentPlayerNum - 3;
                 if(nextPlayerNum == -1){
                     nextPlayerNum = numOfPlayers -1;
@@ -253,6 +268,8 @@ public class Crazy8GameHost {
                 skipNextTurn = false;
             } else {
                 //Not skipping a turn
+                lastPlayerTurnSkipped = false;
+                lastPlayerNum = currentPlayerNum;
                 //-2 since currentPlayerNum is one number ahead
                 nextPlayerNum = currentPlayerNum - 2;
                 if(nextPlayerNum < 0){
