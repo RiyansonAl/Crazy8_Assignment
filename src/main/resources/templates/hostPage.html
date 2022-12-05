@@ -30,6 +30,9 @@ Turn Order Direction: <span  th:text="${turnOrderDirection}" /> <br>
         <input name="playerCard" id="playerCardField">
         <button type="button" onclick="playerCardFunction()" id="playerCardButton">Place Card</button>
         <button type="button" onclick="drawCardFunctionHost()" id="drawCardButton">Draw A Card</button>
+        <br>
+        <label for="playerSuitField">If playing an 8 choose a Suit?</label>
+        <input name="playerSuit" id="playerSuitField" value="NONE">
         <p id="playerCardWarning"></p>
     </div>
 </form>

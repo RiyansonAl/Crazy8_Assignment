@@ -251,9 +251,11 @@ public class PlayabilityOfACardAcceptanceTests {
 
         //Player 1 play card
         String Player1CardPlayed = "8H";
+        String Player1SuitPlayed = "C";
         hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
+        hostBrowser.findElement(By.id("playerSuitField")).clear();
+        hostBrowser.findElement(By.id("playerSuitField")).sendKeys(Player1SuitPlayed);
         hostBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
-
 
         //Sleep for 10 seconds to allow all the pages to refresh
         try {

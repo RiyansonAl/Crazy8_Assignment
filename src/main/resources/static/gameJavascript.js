@@ -31,7 +31,21 @@ function playerCardFunction() {
         document.getElementById("playerCardWarning").innerHTML = "Card was sent";
         const playCardUrl = 'http://localhost:8080/hostPlaysCard'
         const cardValue = document.getElementById('playerCardField').value;
-        const cardUrl = playCardUrl + "/" + cardValue + "/NONE";
+        cardUrl = playCardUrl + "/" + cardValue + "/NONE";
+        //Check if the cardValue is an 8
+        if((cardValue == "8S") || (cardValue == "8H") || (cardValue == "8C") || (cardValue == "8D")){
+            console.log("Played an " + cardValue);
+            const suitValue = document.getElementById('playerSuitField').value;
+            if((suitValue == "S") || (suitValue == "H") || (suitValue == "C") || (suitValue == "D")){
+                cardUrl = playCardUrl + "/" + cardValue + "/" + suitValue;
+            } else {
+                cardUrl = playCardUrl + "/" + cardValue + "/NONE";
+            }
+
+        } else{
+            cardUrl = playCardUrl + "/" + cardValue + "/NONE";
+        }
+
         console.log(cardUrl)
         const response = fetch(cardUrl)
         console.log(response)

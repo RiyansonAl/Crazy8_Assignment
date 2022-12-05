@@ -29,6 +29,9 @@ Turn Order Direction: <span  th:text="${turnOrderDirection}" /> <br>
         <input name="playerCard" id="playerCardField">
         <button type="button" onclick="playerPlaceCardFunction()" id="playerCardButton">Place Card</button>
         <button type="button" onclick="drawCardFunctionPlayer()" id="drawCardButton">Draw A Card</button>
+        <br>
+        <label for="playerSuitField">If playing an 8 choose a Suit?</label>
+        <input name="playerSuit" id="playerSuitField" value="NONE">
         <p id="playerCardWarning"></p>
     </div>
 </form>
@@ -55,7 +58,21 @@ function playerPlaceCardFunction() {
         const cardValue = document.getElementById('playerCardField').value;
         const playerNumber = document.getElementById('hiddenPlayerNumber').value;
         console.log(playerNumber)
-        const cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+        cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+        //Check if the cardValue is an 8
+        if((cardValue == "8S") || (cardValue == "8H") || (cardValue == "8C") || (cardValue == "8D")){
+            console.log("Played an " + cardValue);
+            const suitValue = document.getElementById('playerSuitField').value;
+            if((suitValue == "S") || (suitValue == "H") || (suitValue == "C") || (suitValue == "D")){
+                cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/" + suitValue;
+            } else {
+                cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+            }
+
+        } else{
+            cardUrl = playCardUrl + "/" + playerNumber + "/" + cardValue + "/NONE";
+        }
+
         console.log(cardUrl)
         const response = fetch(cardUrl)
         console.log(response)
