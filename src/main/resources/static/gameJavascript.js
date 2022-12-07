@@ -170,6 +170,21 @@ function player4HandRiggedFunction(){
     }
 }
 
+function LastDrawnCardRiggedFunction(){
+    console.log("Entered last drawn card rigging function");
+    if(document.getElementById('LastDrawnCardText').value != ""){
+        const player1HandValue = document.getElementById('LastDrawnCardText').value;
+        const player1RiggURL = 'http://localhost:8080/lastDrawnCardRigging/' + player1HandValue;
+        const response = fetch(player1RiggURL)
+        console.log(response)
+        document.getElementById("Player1HandWarning").innerHTML = "Last drawn card was updated";
+
+    } else {
+        document.getElementById("Player1HandWarning").innerHTML = "No Card was selected";
+    }
+}
+
+
 
 function loadDoc() {
   const xhttp = new XMLHttpRequest();

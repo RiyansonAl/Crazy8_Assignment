@@ -205,5 +205,14 @@ public class Assignment3Application {
 		}
 	}
 
+	@GetMapping(path = "/lastDrawnCardRigging/{card}")
+	public String lastDrawnCardRigging(@PathVariable("card") String card) {
+
+		webHost.setLastDrawnCard(card);
+		System.out.println("Player " + card + " drawing a card");
+
+		return "riggingPage.html";
+	}
+
 
 }

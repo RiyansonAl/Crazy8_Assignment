@@ -199,6 +199,19 @@ public class gameHostBackEnd {
 
     }
 
+    public int setLastDrawnCard(String card){
+
+        Card drawnCard = gameHost.stringToCard(card);
+
+        if(drawnCard.cardRank == Card.Rank.NONE || drawnCard.cardSuit == Card.Suit.NONE){
+            return 0;
+        } else {
+            gameHost.lastDrawnCard = drawnCard;
+        }
+
+        return 1;
+    }
+
 
 
 }
