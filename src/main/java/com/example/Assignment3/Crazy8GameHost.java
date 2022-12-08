@@ -19,6 +19,7 @@ public class Crazy8GameHost {
     protected  int lastPlayerNum;
     protected boolean lastPlayerTurnSkipped;
     protected int lastCard2;
+    protected boolean play2cardsNextPlayer;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -35,6 +36,7 @@ public class Crazy8GameHost {
         lastPlayerNum = 0;
         currentPlayerCardDrawn = 0;
         lastCard2 = 0;
+        play2cardsNextPlayer = false;
         lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
@@ -84,6 +86,7 @@ public class Crazy8GameHost {
         roundEnded = false;
         currentPlayerCardDrawn = 0;
         lastCard2 = 0;
+        play2cardsNextPlayer = false;
         lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
@@ -229,66 +232,80 @@ public class Crazy8GameHost {
     protected Crazy8Player getNextPlayer(){
         int currentPlayerNum = currentPlayer.getPlayerNum();
         int numOfPlayers = players.length;
-        //Reset the last drawn card and drawn card count for last player
-        currentPlayerCardDrawn = 0;
-        lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
+        if(play2cardsNextPlayer == false) {
+            //Reset the last drawn card and drawn card count for last player
+            currentPlayerCardDrawn = 0;
+            lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
 
-        int nextPlayerNum = 0;
-        if(fwdTurnOrder == true){
-            //Skip next players turn
-            if(skipNextTurn){
-                //Adding 1 here since currentPlayerNum is already one greater than array position
-                lastPlayerTurnSkipped = true;
-                lastPlayerNum = currentPlayerNum + 1;
-                nextPlayerNum = currentPlayerNum + 1;
-                if(nextPlayerNum == numOfPlayers){
-                    nextPlayerNum = 0;
-                } else if (nextPlayerNum > numOfPlayers){
-                    nextPlayerNum = 1;
-                    lastPlayerNum = 1;
-                }
-                skipNextTurn = false;
-            } else {
-                lastPlayerTurnSkipped = false;
-                lastPlayerNum = currentPlayerNum;
-
-                //not adding anything here since currentPlayerNum is already one greater than array position
-                nextPlayerNum = currentPlayerNum;
-                if (nextPlayerNum >= numOfPlayers) {
-                    nextPlayerNum = 0;
-                }
+            //If the current player played a 2 and the next player can play 2 cards
+            if(play2Cards){
+                play2cardsNextPlayer = true;
+                play2Cards = false;
             }
-            currentPlayer = players[nextPlayerNum];
-            return players[nextPlayerNum];
 
+            int nextPlayerNum = 0;
+            if (fwdTurnOrder == true) {
+                //Skip next players turn
+                if (skipNextTurn) {
+                    //Adding 1 here since currentPlayerNum is already one greater than array position
+                    lastPlayerTurnSkipped = true;
+                    lastPlayerNum = currentPlayerNum + 1;
+                    nextPlayerNum = currentPlayerNum + 1;
+                    if (nextPlayerNum == numOfPlayers) {
+                        nextPlayerNum = 0;
+                    } else if (nextPlayerNum > numOfPlayers) {
+                        nextPlayerNum = 1;
+                        lastPlayerNum = 1;
+                    }
+                    skipNextTurn = false;
+                } else {
+                    lastPlayerTurnSkipped = false;
+                    lastPlayerNum = currentPlayerNum;
+
+                    //not adding anything here since currentPlayerNum is already one greater than array position
+                    nextPlayerNum = currentPlayerNum;
+                    if (nextPlayerNum >= numOfPlayers) {
+                        nextPlayerNum = 0;
+                    }
+                }
+                currentPlayer = players[nextPlayerNum];
+                return players[nextPlayerNum];
+
+            } else {
+                //Reverse order
+                if (skipNextTurn) {
+                    lastPlayerTurnSkipped = true;
+                    lastPlayerNum = currentPlayerNum - 1;
+                    if (lastPlayerNum == 0) {
+                        lastPlayerNum = numOfPlayers;
+                    }
+                    nextPlayerNum = currentPlayerNum - 3;
+                    if (nextPlayerNum == -1) {
+                        nextPlayerNum = numOfPlayers - 1;
+                    } else if (nextPlayerNum == -2) {
+                        nextPlayerNum = numOfPlayers - 2;
+                    }
+                    skipNextTurn = false;
+                } else {
+                    //Not skipping a turn
+                    lastPlayerTurnSkipped = false;
+                    lastPlayerNum = currentPlayerNum;
+                    //-2 since currentPlayerNum is one number ahead
+                    nextPlayerNum = currentPlayerNum - 2;
+                    if (nextPlayerNum < 0) {
+                        nextPlayerNum = numOfPlayers - 1;
+                    }
+                }
+                currentPlayer = players[nextPlayerNum];
+                return players[nextPlayerNum];
+            }
         } else{
-            //Reverse order
-            if(skipNextTurn){
-                lastPlayerTurnSkipped = true;
-                lastPlayerNum = currentPlayerNum - 1;
-                if(lastPlayerNum == 0){
-                    lastPlayerNum = numOfPlayers;
-                }
-                nextPlayerNum = currentPlayerNum - 3;
-                if(nextPlayerNum == -1){
-                    nextPlayerNum = numOfPlayers -1;
-                } else if(nextPlayerNum == -2){
-                    nextPlayerNum = numOfPlayers -2;
-                }
-                skipNextTurn = false;
-            } else {
-                //Not skipping a turn
-                lastPlayerTurnSkipped = false;
-                lastPlayerNum = currentPlayerNum;
-                //-2 since currentPlayerNum is one number ahead
-                nextPlayerNum = currentPlayerNum - 2;
-                if(nextPlayerNum < 0){
-                    nextPlayerNum = numOfPlayers-1;
-                }
-            }
-            currentPlayer = players[nextPlayerNum];
-            return players[nextPlayerNum];
+            //Player has a second turn
+            play2cardsNextPlayer = false;
+            return currentPlayer;
         }
+
+
     }
 
     protected String endTurn(){
