@@ -21,13 +21,15 @@ public class Crazy8GameHost {
     protected boolean lastPlayerTurnSkipped;
     protected int lastCard2;
     protected boolean play2cardsNextPlayer;
+    protected int newRoundPlayerStart;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
 
         players = newplayers;
         deck = new CardDeck();
-        currentPlayer = newplayers[0];
+        newRoundPlayerStart = 0;
+        currentPlayer = newplayers[newRoundPlayerStart];
         fwdTurnOrder = true;
         skipNextTurn = false;
         play2Cards = false;
@@ -80,7 +82,13 @@ public class Crazy8GameHost {
 
     protected void newRound(){
         deck = new CardDeck();
-        currentPlayer = players[0];
+        //New Round player starts in order of joing the game
+        newRoundPlayerStart = newRoundPlayerStart + 1;
+        if(newRoundPlayerStart == players.length){
+            newRoundPlayerStart = 0;
+        }
+
+        currentPlayer = players[newRoundPlayerStart];
         fwdTurnOrder = true;
         skipNextTurn = false;
         play2Cards = false;
