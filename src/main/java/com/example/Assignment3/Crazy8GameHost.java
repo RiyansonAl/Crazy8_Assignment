@@ -1,5 +1,6 @@
 package com.example.Assignment3;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Crazy8GameHost {
@@ -425,7 +426,8 @@ public class Crazy8GameHost {
             if(cardChar.length == 2){
                 rank = Card.stringToRank(cardChar[0]);
                 suit = Card.stringToSuit(cardChar[1]);
-            } else if (cardChar.length == 2) {
+            } else if (cardChar.length == 3) {
+
                 rank = Card.stringToRank("10");
                 suit = Card.stringToSuit(cardChar[2]);
             } else {

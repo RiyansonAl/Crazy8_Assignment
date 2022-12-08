@@ -193,6 +193,7 @@ public class ScoringAndCompleteGameAcceptanceTests {
             throw new RuntimeException(ex);
         }
 
+
         //Player 1 plays a card
         String Player1CardPlayed = "4H";
         hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
