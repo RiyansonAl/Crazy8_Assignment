@@ -359,14 +359,14 @@ public class Crazy8GameHost {
     private int calculateScoreHelper(Card card){
         int cardValue = 0;
         switch (card.cardRank){
-            case A -> cardValue = 10;
+            case A -> cardValue = 1;
             case TWO -> cardValue = 2;
             case THREE -> cardValue = 3;
             case FOUR -> cardValue = 4;
             case FIVE -> cardValue = 5;
             case SIX -> cardValue = 6;
             case SEVEN -> cardValue = 7;
-            case EIGHT -> cardValue = 8;
+            case EIGHT -> cardValue = 50;
             case NINE -> cardValue = 9;
             case TEN -> cardValue = 10;
             case J -> cardValue = 10;
