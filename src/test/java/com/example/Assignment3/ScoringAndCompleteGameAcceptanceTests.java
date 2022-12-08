@@ -495,7 +495,7 @@ public class ScoringAndCompleteGameAcceptanceTests {
         Player2CardPlayed = "10D";
         player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
         player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
-        //Sleep for 5 seconds
+        //Sleep for 10 seconds
         try {
             Thread.sleep(10000);
         } catch (InterruptedException ex) {
@@ -508,6 +508,293 @@ public class ScoringAndCompleteGameAcceptanceTests {
         //String player1Message = "Player 1 Score: 1. Player 2 Score: 0. Player 3 Score: 86. Player 4 Score: 102";
         String player1Message = "Player 1 Score: 21. Player 2 Score: 0. Player 3 Score: 3. Player 4 Score: 39";
         assertTrue((player1Text.getText().contains(player1Message)));
+
+        //Sleeping for 15 seconds waiting for the new round to start
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //rigging the hands for the new round
+        DiscardPile = "10D";
+         Player1HandRigged = "7D,4S,7C,4H,5D";
+        riggingBrowser.findElement(By.id("discardPileText")).clear();
+        riggingBrowser.findElement(By.id("discardPileText")).sendKeys(DiscardPile);
+        riggingBrowser.findElement(By.id("discardPileButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("Player1HandText")).clear();
+        riggingBrowser.findElement(By.id("Player1HandText")).sendKeys(Player1HandRigged);
+        riggingBrowser.findElement(By.id("Player1HandButton")).sendKeys(Keys.ENTER);
+        Player2HandRigged = "9D,3S,9C,3H,JC";
+        riggingBrowser.findElement(By.id("Player2HandText")).clear();
+        riggingBrowser.findElement(By.id("Player2HandText")).sendKeys(Player2HandRigged);
+        riggingBrowser.findElement(By.id("Player2HandButton")).sendKeys(Keys.ENTER);
+        Player3HandRigged = "3D,9S,3C,9H,5H";
+        riggingBrowser.findElement(By.id("Player3HandText")).clear();
+        riggingBrowser.findElement(By.id("Player3HandText")).sendKeys(Player3HandRigged);
+        riggingBrowser.findElement(By.id("Player3HandButton")).sendKeys(Keys.ENTER);
+        Player4HandRigged = "4D,7S,4C,5S,8D";
+        riggingBrowser.findElement(By.id("Player4HandText")).clear();
+        riggingBrowser.findElement(By.id("Player4HandText")).sendKeys(Player4HandRigged);
+        riggingBrowser.findElement(By.id("Player4HandButton")).sendKeys(Keys.ENTER);
+        //Sleep 5 seconds waiting for the new round to start
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 2 plays a card
+        Player2CardPlayed = "9D";
+        player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
+        player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 3 plays a card
+        Player3CardPlayed = "3D";
+        player3Browser.findElement(By.id("playerCardField")).sendKeys(Player3CardPlayed);
+        player3Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 plays a card
+        Player4CardPlayed = "4D";
+        player4Browser.findElement(By.id("playerCardField")).sendKeys(Player4CardPlayed);
+        player4Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 1 plays a card
+        Player1CardPlayed = "4S";
+        hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
+        hostBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+
+        //Player 2 plays a card
+        Player2CardPlayed = "3S";
+        player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
+        player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 3 plays a card
+        Player3CardPlayed = "9S";
+        player3Browser.findElement(By.id("playerCardField")).sendKeys(Player3CardPlayed);
+        player3Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 plays a card
+        Player4CardPlayed = "7S";
+        player4Browser.findElement(By.id("playerCardField")).sendKeys(Player4CardPlayed);
+        player4Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 1 plays a card
+        Player1CardPlayed = "7C";
+        hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
+        hostBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+
+        //Player 2 plays a card
+        Player2CardPlayed = "9C";
+        player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
+        player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 3 plays a card
+        Player3CardPlayed = "3C";
+        player3Browser.findElement(By.id("playerCardField")).sendKeys(Player3CardPlayed);
+        player3Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 plays a card
+        Player4CardPlayed = "4C";
+        player4Browser.findElement(By.id("playerCardField")).sendKeys(Player4CardPlayed);
+        player4Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 1 plays a card
+        Player1CardPlayed = "4H";
+        hostBrowser.findElement(By.id("playerCardField")).sendKeys(Player1CardPlayed);
+        hostBrowser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+
+        //Player 2 plays a card
+        Player2CardPlayed = "3H";
+        player2Browser.findElement(By.id("playerCardField")).sendKeys(Player2CardPlayed);
+        player2Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 3 plays a card
+        Player3CardPlayed = "9H";
+        player3Browser.findElement(By.id("playerCardField")).sendKeys(Player3CardPlayed);
+        player3Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 draws
+        //Player 4 Draws a card
+        player4Browser.findElement(By.id("drawCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Rigg player 4's hand
+        Player4HandRigged = "5S,8D,KS";
+        lastDrawnCard = "KS";
+        riggingBrowser.findElement(By.id("Player4HandText")).clear();
+        riggingBrowser.findElement(By.id("Player4HandText")).sendKeys(Player4HandRigged);
+        riggingBrowser.findElement(By.id("Player4HandButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).clear();
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).sendKeys(lastDrawnCard);
+        riggingBrowser.findElement(By.id("LastDrawnCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 draws another card
+        player4Browser.findElement(By.id("drawCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Rigg player 4's hand
+        Player4HandRigged = "5S,8D,KS,QS";
+        lastDrawnCard = "QS";
+        riggingBrowser.findElement(By.id("Player4HandText")).clear();
+        riggingBrowser.findElement(By.id("Player4HandText")).sendKeys(Player4HandRigged);
+        riggingBrowser.findElement(By.id("Player4HandButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).clear();
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).sendKeys(lastDrawnCard);
+        riggingBrowser.findElement(By.id("LastDrawnCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 draws a third card
+        player4Browser.findElement(By.id("drawCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Rigg player 4's hand
+        Player4HandRigged = "5S,8D,KS,QS,KH";
+        lastDrawnCard = "KH";
+        riggingBrowser.findElement(By.id("Player4HandText")).clear();
+        riggingBrowser.findElement(By.id("Player4HandText")).sendKeys(Player4HandRigged);
+        riggingBrowser.findElement(By.id("Player4HandButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).clear();
+        riggingBrowser.findElement(By.id("LastDrawnCardText")).sendKeys(lastDrawnCard);
+        riggingBrowser.findElement(By.id("LastDrawnCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //Player 4 plays a card
+        Player4CardPlayed = "KH";
+        player4Browser.findElement(By.id("playerCardField")).sendKeys(Player4CardPlayed);
+        player4Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
 
 
 
