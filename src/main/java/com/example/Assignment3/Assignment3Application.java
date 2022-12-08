@@ -41,9 +41,11 @@ public class Assignment3Application {
 		model.addAttribute("numPlayers", webHost.getNumOfPlayersRemaining());
 		model.addAttribute("allPlayerMessage", webHost.getAllPlayersOutput());
 
+
 		if(webHost.gameHost != null) {
 			model.addAttribute("PlayerHand", webHost.getPlayerHand(1));
 			model.addAttribute("turnOrderDirection", webHost.getTurnOrderDirection());
+			model.addAttribute("scoreBoardText", webHost.gameHost.printScoreBoardInLine());
 		}
 
 		//model.addAttribute("serverTime", dateFormat.format(new Date()));
@@ -137,6 +139,7 @@ public class Assignment3Application {
 			int playerNumInt = Integer.valueOf(playerNum);
 			model.addAttribute("PlayerHand", webHost.getPlayerHand(playerNumInt));
 			model.addAttribute("turnOrderDirection", webHost.getTurnOrderDirection());
+			model.addAttribute("scoreBoardText", webHost.gameHost.printScoreBoardInLine());
 		}
 
 

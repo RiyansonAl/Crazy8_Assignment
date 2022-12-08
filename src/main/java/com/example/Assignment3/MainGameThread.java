@@ -135,7 +135,7 @@ public class MainGameThread extends Thread{
                                 //Set Player input back to null
                                 host.setPlayerOutput(host.gameHost.getCurrentPlayerNum(), "");
                                 host.allPlayersOutput = "Discard Pile Top Card: " + host.gameHost.getDiscardPile().toString() + " \n ";
-                                host.allPlayersOutput = host.allPlayersOutput + host.gameHost.endTurn();
+                                host.allPlayersOutput = host.allPlayersOutput + " " + host.gameHost.endTurn();
                                 //TODO: Check if this player finished all there cards, if player has no cards then end turn.
                                 String playerHand = host.getPlayerHand(host.gameHost.getCurrentPlayerNum());
                                 if (playerHand == "No cards") {
@@ -170,11 +170,11 @@ public class MainGameThread extends Thread{
             //TODO: Display score at the end of the round
             //End of the round display score
             if (host.gameHost.roundEnded == true) {
-                host.allPlayersOutput = host.allPlayersOutput + host.gameHost.printScoreBoardInLine();
+                host.allPlayersOutput = host.allPlayersOutput + " " + host.gameHost.printScoreBoardInLine();
             }
             //5 sec delay
             try {
-                Thread.sleep(5000);
+                Thread.sleep(20000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -824,7 +824,7 @@ public class PlayingTwoAcceptanceTests {
         }
         //Check the card was played
         WebElement player1Text = hostBrowser.findElement(By.xpath("//*[text() != '']"));
-        String player1Message = "Player 3 Turn";
+        String player1Message = "No Winner yet";
         System.out.println(player1Text.getText());
         assertTrue((player1Text.getText().contains(player1Message)));
 

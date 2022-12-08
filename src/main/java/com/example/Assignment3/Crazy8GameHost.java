@@ -333,11 +333,11 @@ public class Crazy8GameHost {
                 endRoundString = endRoundString + "The winner is player " + lowestScorePlayer.getPlayerNum() + " with a score of " + lowestScore + "\n";
                 gameover = true;
             } else {
-                endRoundString = endRoundString + "No Winner yet Moving on to the next Round";
+                endRoundString = endRoundString + "No Winner yet moving on to the next Round.";
             }
 
         } else {
-            endRoundString = endRoundString + "Next Player's Turn";
+            //endRoundString = endRoundString + "Next Player's Turn";
         }
         return endRoundString;
     }
