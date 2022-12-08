@@ -18,6 +18,7 @@ public class Crazy8GameHost {
     protected Card lastDrawnCard;
     protected  int lastPlayerNum;
     protected boolean lastPlayerTurnSkipped;
+    protected int lastCard2;
 
 
     public Crazy8GameHost(Crazy8Player[] newplayers){
@@ -33,6 +34,7 @@ public class Crazy8GameHost {
         lastPlayerTurnSkipped = false;
         lastPlayerNum = 0;
         currentPlayerCardDrawn = 0;
+        lastCard2 = 0;
         lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
@@ -81,6 +83,7 @@ public class Crazy8GameHost {
         play2Cards = false;
         roundEnded = false;
         currentPlayerCardDrawn = 0;
+        lastCard2 = 0;
         lastDrawnCard = new Card(Card.Rank.NONE, Card.Suit.NONE);
     }
 
@@ -144,13 +147,20 @@ public class Crazy8GameHost {
             if(canPlay2CardsImmediately(nextPlayer.getPlayerHand(), playedCard)){
                 play2Cards = true;
             } else {
-                //Draw 2 cards and give to next player
-                playerDrawCard(riggedPickup2[0]);
-                playerDrawCard(riggedPickup2[1]);
+                //If the player before played a 2 then that 2 stacks on top and they pick-up another 2
+                lastCard2 = lastCard2 + 1;
+                for(int i = 0; i < lastCard2; i++) {
+                    //Draw 2 cards and give to next player
+                    playerDrawCard(riggedPickup2[0]);
+                    playerDrawCard(riggedPickup2[1]);
+                }
             }
             currentPlayer = currentPlayerPlaying;
             
+        } else {
+            lastCard2 = 0;
         }
+
 
         if(canPlay){
             setDiscardPile(playedCard);
