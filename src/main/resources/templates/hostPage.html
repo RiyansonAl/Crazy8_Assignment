@@ -6,8 +6,8 @@
     <script type="text/javascript" th:src="@{/gameJavascript.js}" ></script>
 </head>
 <body>
-<h1>Test Page for Card Game</h1>
-Current time is <span th:text="${serverTime}" />
+<h1>Player 1 Page</h1>
+Welcome Player 1
 <br>
 <h2>Score Board </h2>
 <span th:text="${scoreBoardText}" />
@@ -37,41 +37,12 @@ Turn Order Direction: <span  th:text="${turnOrderDirection}" /> <br>
     </div>
 </form>
 
-<br><br><br>
-<form action="/waitingPlayers" method="post">
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname"><br><br>
-    <input type="submit" value="Start Game">
-</form>
-
-<p id="demo2"></p>
-
-<script>
-document.getElementById("demo2").innerHTML = "Hello JavaScript!!";
-</script>
 
 <script>
             window.setTimeout(function(){
                 window.location.reload();
-            },5000);
+            },5001);
 </script>
-
-<p id="demo"></p>
-<button type="button"
-        onclick="displayDate()">
-    Click me to display Date and Time.</button>
-
-<button type="button" onclick="myFunction()">Try it</button>
-<p id="demo3"></p>
-
-
-<div id="testTestFile">
-    <p>Let AJAX change this text.</p>
-    <button type="button" onclick="testingData()">Change Content</button>
-</div>
-
-
-
 
 </body>
 </html>

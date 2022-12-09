@@ -523,7 +523,7 @@ public class ScoringAndCompleteGameAcceptanceTests {
 
         //rigging the hands for the new round
         DiscardPile = "10D";
-         Player1HandRigged = "7D,4S,7C,4H,5D";
+        Player1HandRigged = "7D,4S,7C,4H,5D";
         riggingBrowser.findElement(By.id("discardPileText")).clear();
         riggingBrowser.findElement(By.id("discardPileText")).sendKeys(DiscardPile);
         riggingBrowser.findElement(By.id("discardPileButton")).sendKeys(Keys.ENTER);
@@ -794,6 +794,26 @@ public class ScoringAndCompleteGameAcceptanceTests {
         Player4CardPlayed = "KH";
         player4Browser.findElement(By.id("playerCardField")).sendKeys(Player4CardPlayed);
         player4Browser.findElement(By.id("playerCardButton")).sendKeys(Keys.ENTER);
+        //Sleep for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        //The current rigging system does not rig fast enough to detect the last card is playable
+        //We will need to manually reset the cards here
+        //Rigg player 4's hand
+        Player4HandRigged = "5S,8D,KS,QS";
+        lastDrawnCard = "KH";
+        riggingBrowser.findElement(By.id("discardPileText")).clear();
+        riggingBrowser.findElement(By.id("discardPileText")).sendKeys(lastDrawnCard);
+        riggingBrowser.findElement(By.id("discardPileButton")).sendKeys(Keys.ENTER);
+        riggingBrowser.findElement(By.id("Player4HandText")).clear();
+        riggingBrowser.findElement(By.id("Player4HandText")).sendKeys(Player4HandRigged);
+        riggingBrowser.findElement(By.id("Player4HandButton")).sendKeys(Keys.ENTER);
+
+
         //Sleep for 5 seconds
         try {
             Thread.sleep(5000);

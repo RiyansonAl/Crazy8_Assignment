@@ -28,8 +28,8 @@ public class Crazy8GameHost {
 
         players = newplayers;
         deck = new CardDeck();
-        newRoundPlayerStart = 0;
-        currentPlayer = newplayers[newRoundPlayerStart];
+        newRoundPlayerStart = -1;
+        currentPlayer = newplayers[0];
         fwdTurnOrder = true;
         skipNextTurn = false;
         play2Cards = false;
@@ -82,13 +82,15 @@ public class Crazy8GameHost {
 
     protected void newRound(){
         deck = new CardDeck();
-        //New Round player starts in order of joing the game
+        //New Round player starts in order of joining the game
         newRoundPlayerStart = newRoundPlayerStart + 1;
         if(newRoundPlayerStart == players.length){
             newRoundPlayerStart = 0;
         }
+        System.out.println("\n\n\nNew Round starting.......Player " + currentPlayer.getPlayerNum() + " goes first\n\n");
 
         currentPlayer = players[newRoundPlayerStart];
+        System.out.println("New Round starting.......Player " + currentPlayer.getPlayerNum() + " goes first");
         fwdTurnOrder = true;
         skipNextTurn = false;
         play2Cards = false;

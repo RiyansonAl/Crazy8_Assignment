@@ -48,34 +48,6 @@ public class Assignment3Application {
 			model.addAttribute("scoreBoardText", webHost.gameHost.printScoreBoardInLine());
 		}
 
-		//model.addAttribute("serverTime", dateFormat.format(new Date()));
-		LocalDateTime myDateObj = LocalDateTime.now();
-		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-		String formattedDate = myDateObj.format(myFormatObj);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		count = count + 1;
-		model.addAttribute("count", count);
-
-
-		model.addAttribute("msgId", "Id");
-		model.addAttribute("msgName", "Name");
-
-		model.addAttribute("id", "Id here");
-		model.addAttribute("name", "Name Here");
-
-		/*
-		try {
-			ServerSocket server = new ServerSocket(12345);
-			System.out.println("Created server Socket");
-			server.accept();
-			server.close();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		 */
 
 		//return String.format("Welcome Player 1! Waiting for other players to join");
 		return "hostPage.html";
@@ -160,7 +132,6 @@ public class Assignment3Application {
 
 		System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
 		webHost.riggPlayerHand(playerNum, cards);
-		System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
 
 		return "riggingPage.html";
 	}
@@ -179,7 +150,6 @@ public class Assignment3Application {
 		System.out.println("Player 1 playing:  " + card + " With a suit of  " + suit);
 		String playerInput = card + "," + suit;
 		webHost.setPlayerOutput(1, playerInput);
-		//System.out.println("Rigging Player " + playerNum + " hand to  " + cards + " card");
 
 		return "hostPage.html";
 	}
