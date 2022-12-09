@@ -39,7 +39,29 @@ public class waitingForPlayersThread extends Thread {
         host.allPlayersOutput = "All players have Join. The Game is starting in 10 seconds\n";
 
         //Setup Crazy8GameHost
-        host.players = new Crazy8Player[]{host.player1, host.player2, host.player3, host.player4};
+        switch (host.getNumOfPlayers()){
+            case 2:
+                host.players = new Crazy8Player[]{host.player1, host.player2};
+                break;
+            case 3:
+                host.players = new Crazy8Player[]{host.player1, host.player2, host.player3};
+                break;
+            case 4:
+                host.players = new Crazy8Player[]{host.player1, host.player2, host.player3, host.player4};
+                break;
+            default:
+                host.allPlayersOutput = "Not enough players. Please close the web browser and try again with the correct number of players\n";
+                while (true){
+                    host.allPlayersOutput = "Not enough players. Please close the web browser and try again with the correct number of players\n";
+                    //10 sec delay before starting the next thread
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+        }
         host.gameHost = new Crazy8GameHost(host.players);
 
         //10 sec delay before starting the next thread
